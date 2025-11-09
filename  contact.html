@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | DR Govt Portal</title>
+  <style>
+    body { font-family: Arial; margin: 40px; line-height: 1.6; background-color: #f8f9fa; }
+    h1 { color: #008040; }
+    label, input, textarea { display: block; margin-top: 10px; width: 100%; max-width: 500px; }
+    textarea { height: 100px; }
+    button { margin-top: 10px; background: #0073e6; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 8px; }
+    .info { background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 600px; }
+    a { color: #0073e6; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Contact Us</h1>
+
+  <div class="info">
+    <p><b>Owner:</b> Dipak Khandu Suryawanshi</p>
+    <p><b>Email:</b> <a href="mailto:dipaksuryawanshi205@gmail.com">dipaksuryawanshi205@gmail.com</a></p>
+    <p><b>Instagram:</b> <a href="https://instagram.com/drtechmarathi" target="_blank">@drtechmarathi</a></p>
+    <p><b>Location:</b> Maharashtra, India 🇮🇳</p>
+  </div>
+
+  <p>तुम्हाला काही प्रश्न किंवा सूचना असल्यास, खालील फॉर्मद्वारे संपर्क करा 👇</p>
+
+  <form action="mailto:dipaksuryawanshi205@gmail.com" method="post" enctype="text/plain">
+    <label>तुमचं नाव / Your Name:</label>
+    <input type="text" name="name" required>
+    <label>ई-मेल / Email:</label>
+    <input type="email" name="email" required>
+    <label>संदेश / Message:</label>
+    <textarea name="message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</body>
+</html>
