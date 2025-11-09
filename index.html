@@ -1,90 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--
+    GovPortal - Single-file HTML portal for government & service links
+    ---------------------------------------------------------------
+    काय आहे: एक एकल HTML फाईल जी तुमच्या वेबसाईटवर विविध सरकारी/सर्विस वेबसाइट्सचे लिंक, शोध, श्रेणी आणि लहान UI कडं दाखवते.
+    महत्त्वाचे टीप्स:
+    1) बरेच सरकारी किंवा तृतीय-पक्ष साइट्स IFRAME मध्ये उघडण्यास परवानगी देत नाहीत (X-Frame-Options), त्यामुळे येथे लिंक नवीन टॅबमध्ये उघडतील.
+    2) जर तुम्हाला एखादी सेवा प्रत्यक्षात तुमच्या UI मध्ये घ्यायची असेल, तर त्या साइटचे API (जर उपलब्ध असेल तर) वापरून एकीकृत करावे; अन्यथा फक्त लिंक द्यावी.
+    3) वापरासाठी: ही फाईल `index.html` नावाने सेव्ह करा आणि तुमच्या होस्टिंगवर अपलोड करा (GitHub Pages, Netlify, Vercel इ.).
+
+    Step-by-step तंत्र: (सोप्या मराठीत)
+    -----------------------------------
+    1) फाईल सेव्ह करा: या फाईलला `index.html` नावाने सेव्ह करा.
+    2) लिंक बदलणे/अॅड करणे: खाली `services` म्हटलेले जावास्क्रिप्ट array शोधा. त्या ठिकाणी प्रत्येक सेवेचे नाव, विवरण, श्रेणी आणि `url` द्या.
+    3) लोकल टेस्ट: तुमच्या संगणकावर फाईल डबल क्लिक करुन ब्राऊझरमध्ये उघडा. (कोणतेही सर्व्हर नसेल तर काही फिचर्स सिम्पल काम करतील.)
+    4) GitHub Pages वर डिप्लॉय: GitHub वर नवीन रेपो बनवा, `index.html` push करा -> Settings -> Pages -> मुख्य ब्रांच निवडा -> save. तुमची साइट `https://<username>.github.io/<repo>/` वर दिसेल.
+    5) पुढचे सुधारणा: श्रेणी, सॉर्ट, एडमिन पॅनेल (वेब फॉर्म जिथून तुम्ही लिंक add/delete करू शकता) किंवा लॉगिन/पेमेंटची गरज असल्यास मी पुढे कोड देऊ शकतो.
+
+    फायदे:
+    - सुलभ आणि जलद सुरूवात
+    - कुठल्याही साध्या होस्टिंगवर चालेल
+    - पूर्णपणे कस्टमायझेबल: नावे, लोगो, रंग, सेवा
+
+    लक्षात घ्या: जर तुम्हाला वेबसाईटवरून तांत्रिकपणे एखादी सरकारी फॉर्म सबमिट करायचा असेल (उदा. आधार/पॅन सारखे संवेदनशील कार्य), तर ती कामे API द्वारे आणि अधिक कठोर सुरक्षा/लायसन्स/अनुमती आवश्यक असते. अशा प्रकारच्या इंटिग्रेशनसाठी अधिक कायदेशीर आणि तांत्रिक तपास करणे आवश्यक आहे.
+--><!doctype html>
+
+<html lang="mr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Farming Simulator 3D - Tractor Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DR Govt Portal - तुमचे सर्व सरकारी दुवे</title>
   <style>
-    body { margin: 0; overflow: hidden; background: #87ceeb; }
-    #info {
-      position: absolute;
-      top: 10px; left: 10px;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-family: Arial, sans-serif;
-    }
+    :root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#111}
+    header{background:linear-gradient(90deg,#0f172a,#0b1220); color:#fff; padding:24px 20px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:#cbd5e1}
+    .controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    input.search{padding:12px 14px;border-radius:10px;border:1px solid #e5e7eb;min-width:280px}
+    select, button{padding:10px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 3px rgba(2,6,23,0.06);display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.card .actions{margin-top:8px;display:flex;gap:8px}
+.btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer}
+.btn.open{background:var(--accent);color:#fff}
+.btn.copy{background:#f3f4f6}
+
+footer{padding:18px 20px;text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+
+/* small responsive tweaks */
+@media (max-width:520px){header{padding:16px} .controls{flex-direction:column} input.search{width:100%}}
+
   </style>
 </head>
 <body>
-  <div id="info">
-    🚜 <strong>Tractor Game</strong><br>
-    Use <b>Arrow Keys</b> to move the tractor.
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo">DR</div>
+        <div>
+          <h1>DR Govt Portal</h1>
+          <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
+        </div>
+      </div><div class="controls">
+    <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhar, Ration" />
+    <select id="categoryFilter">
+      <option value="all">सर्व श्रेणी</option>
+    </select>
+    <button id="addBtn" class="btn">नवीन लिंक जोडा</button>
   </div>
+</div>
 
-  <!-- Three.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  </header>  <main class="container">
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </main>  <footer>
+    © DR Govt Portal — या पोर्टलद्वारे दिलेल्या लिंक्स फक्त दुवे आहेत. तुम्ही कोणतीही संवेदनशील माहिती टाकताना सावध रहा.
+  </footer>  <script>
+    // --------------------------
+    // CONFIG: येथे services list बदलून हवा ते लिंक जोडा/काढा
+    // --------------------------
+    const services = [
+      {id:1, name: 'PAN कार्ड (Income Tax portal)', desc:'PAN अर्ज/स्थिती तपासा', category:'पॅन/टॅक्स', url:'https://www.incometax.gov.in/iec/foportal'},
+      {id:2, name: 'Aadhaar - UIDAI', desc:'आधार कार्ड माहिती व सेव्हिसेस', category:'आधार', url:'https://uidai.gov.in'},
+      {id:3, name: 'Passport Seva', desc:'नवीन पासपोर्ट अर्ज व अपॉइंटमेंट', category:'पासपोर्ट', url:'https://www.passportindia.gov.in'},
+      {id:4, name: 'EPFO', desc:'EPF पासबुक व सेव्हिसेस', category:'श्रम', url:'https://www.epfindia.gov.in'},
+      {id:5, name: 'Ration Card - State Portals', desc:'रेशन कार्ड अर्ज (राज्यानुसार)', category:'रेशन', url:'https://ration.example.com'},
+      {id:6, name: 'Photo Cropper (Online)', desc:'फोटो क्रॉप व एडिटिंग साधन', category:'उपयुक्त साधने', url:'https://www.photopea.com'},
+      {id:7, name: 'Govt Services - Digital Seva', desc:'Digital Seva/CSC पोर्टल', category:'सेवा केंद्र', url:'https://digitalseva.csc.gov.in'}
+    ];
 
-  <script>
-    // Scene setup
-    const scene = new THREE.Scene();
+    // --------------------------
+    // Initialization
+    // --------------------------
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const addBtn = document.getElementById('addBtn');
 
-    // Camera
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 5, 10);
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    // Light
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5, 10, 7.5);
-    scene.add(light);
-
-    // Ground (Farm Land)
-    const groundGeometry = new THREE.PlaneGeometry(100, 100);
-    const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x228B22 });
-    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-    ground.rotation.x = -Math.PI / 2;
-    scene.add(ground);
-
-    // Tractor (simple cube)
-    const tractorGeometry = new THREE.BoxGeometry(1.5, 1, 3);
-    const tractorMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
-    const tractor = new THREE.Mesh(tractorGeometry, tractorMaterial);
-    tractor.position.y = 0.5;
-    scene.add(tractor);
-
-    // Keyboard controls
-    const keys = {};
-    window.addEventListener('keydown', (e) => keys[e.key] = true);
-    window.addEventListener('keyup', (e) => keys[e.key] = false);
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      if (keys['ArrowUp']) tractor.position.z -= 0.1;
-      if (keys['ArrowDown']) tractor.position.z += 0.1;
-      if (keys['ArrowLeft']) tractor.rotation.y += 0.05;
-      if (keys['ArrowRight']) tractor.rotation.y -= 0.05;
-
-      // Follow the tractor
-      camera.position.x = tractor.position.x + 5 * Math.sin(-tractor.rotation.y);
-      camera.position.z = tractor.position.z + 5 * Math.cos(-tractor.rotation.y);
-      camera.lookAt(tractor.position);
-
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    // populate category filter
+    const categories = Array.from(new Set(services.map(s=>s.category)));
+    categories.forEach(cat=>{
+      const opt = document.createElement('option'); opt.value=cat; opt.textContent=cat; categoryFilter.appendChild(opt);
     });
-  </script>
-</body>
+
+    function render(list){
+      grid.innerHTML='';
+      if(list.length===0){ grid.innerHTML='<div style="grid-column:1/-1;padding:20px;background:#fff;border-radius:10px;text-align:center;color:var(--muted)">कोणतीही सेवा सापडली नाही.</div>'; return }
+      list.forEach(s=>{
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `
+          <div>
+            <h3>${escapeHtml(s.name)}</h3>
+            <p>${escapeHtml(s.desc)}</p>
+          </div>
+          <div class="actions">
+            <button class="btn open" data-url="${escapeHtml(s.url)}">उघडा</button>
+            <button class="btn copy" data-url="${escapeHtml(s.url)}">कॉपी करा</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str){ return String(str).replace(/[&"'<>]/g, (m)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[m])) }
+
+    // initial render
+    render(services);
+
+    // search + filter logic
+    function filterAndRender(){
+      const q = search.value.trim().toLowerCase();
+      const cat = categoryFilter.value;
+      const filtered = services.filter(s=>{
+        const matchesQ = q === '' || s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
+        const matchesCat = cat === 'all' || s.category === cat;
+        return matchesQ && matchesCat;
+      });
+      render(filtered);
+    }
+
+    search.addEventListener('input', filterAndRender);
+    categoryFilter.addEventListener('change', filterAndRender);
+
+    // delegate click events for open & copy
+    document.body.addEventListener('click', (e)=>{
+      const openBtn = e.target.closest('.btn.open');
+      if(openBtn){ const url = openBtn.dataset.url; window.open(url, '_blank'); return }
+      const copyBtn = e.target.closest('.btn.copy');
+      if(copyBtn){ const url = copyBtn.dataset.url; navigator.clipboard.writeText(url).then(()=>{ alert('लिंक कॉपी झाली!') }).catch(()=>{ prompt('कॉपी करा (Ctrl+C):', url) }); return }
+    });
+
+    // add link form (simple prompt-based flow)
+    addBtn.addEventListener('click', ()=>{
+      const name = prompt('सेवेचे नाव टाका (उदा. PAN कार्ड)'); if(!name) return;
+      const url = prompt('सेवेचा पूर्ण URL टाका (https://...)'); if(!url) return;
+      const desc = prompt('लहान वर्णन टाका (ऐच्छिक)', '');
+      const category = prompt('श्रेणी टाका (उदा. पॅन/टॅक्स, आधार, पासपोर्ट)', 'सामान्य');
+      const id = services.length ? Math.max(...services.map(s=>s.id))+1 : 1;
+      services.push({id,name,desc,category,url});
+      // ensure category in select
+      if(!Array.from(categoryFilter.options).some(o=>o.value===category)){
+        const opt = document.createElement('option'); opt.value=category; opt.textContent=category; categoryFilter.appendChild(opt);
+      }
+      filterAndRender();
+    });
+
+    // optional: allow initial query via URL ?q=pan
+    (function applyQuery(){
+      const params = new URLSearchParams(location.search);
+      const q = params.get('q'); if(q){ search.value = q; filterAndRender(); }
+    })();
+
+  </script></body>
 </html>
