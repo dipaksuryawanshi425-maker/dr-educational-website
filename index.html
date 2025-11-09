@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="mr">
 <head>
   <meta charset="utf-8">
@@ -17,19 +16,25 @@
     p.lead{margin:6px 0 0;color:#cbd5e1}
     .controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
     input.search{padding:12px 14px;border-radius:10px;border:1px solid #e5e7eb;min-width:280px}
-    select{padding:10px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
-.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 3px rgba(2,6,23,0.06);display:flex;flex-direction:column;gap:8px}
-.card h3{margin:0;font-size:16px}
-.card p{margin:0;color:var(--muted);font-size:13px}
-.card .actions{margin-top:8px;display:flex;gap:8px}
-.btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer}
-.btn.open{background:var(--accent);color:#fff}
-.btn.copy{background:#f3f4f6}
+    select{padding:10px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 3px rgba(2,6,23,0.06);display:flex;flex-direction:column;gap:8px}
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    .card .actions{margin-top:8px;display:flex;gap:8px}
+    .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer}
+    .btn.open{background:var(--accent);color:#fff}
+    .btn.copy{background:#f3f4f6}
 
-footer{padding:18px 20px;text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px;margin-top:40px;background:#fff;border-top:1px solid #e5e7eb}
+    footer a{color:var(--accent);text-decoration:none;margin:0 8px}
+    footer a:hover{text-decoration:underline}
 
-@media (max-width:520px){header{padding:16px} .controls{flex-direction:column} input.search{width:100%}}
-
+    @media (max-width:520px){
+      header{padding:16px}
+      .controls{flex-direction:column}
+      input.search{width:100%}
+    }
   </style>
 </head>
 <body>
@@ -41,44 +46,62 @@ footer{padding:18px 20px;text-align:center;color:var(--muted);font-size:13px;mar
           <h1>DR Govt Portal</h1>
           <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
         </div>
-      </div><div class="controls">
-    <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhar, Ration" />
-    <select id="categoryFilter">
-      <option value="all">सर्व श्रेणी</option>
-    </select>
-  </div>
-</div>
+      </div>
+      <div class="controls">
+        <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhar, Ration" />
+        <select id="categoryFilter">
+          <option value="all">सर्व श्रेणी</option>
+        </select>
+      </div>
+    </div>
+  </header>
 
-  </header>  <main class="container">
+  <main class="container">
     <div id="grid" class="grid" aria-live="polite"></div>
-  </main>  <footer>
-    © DR Govt Portal — या पोर्टलद्वारे दिलेल्या लिंक्स फक्त दुवे आहेत. तुम्ही कोणतीही संवेदनशील माहिती टाकताना सावध रहा.
-  </footer>  <script>
+  </main>
+
+  <footer>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="disclaimer.html">Disclaimer</a> |
+      <a href="contact.html">Contact Us</a>
+    </p>
+    <p>© 2025 DR Govt Portal — ही साइट फक्त अधिकृत सरकारी दुवे पुरवते. कोणतीही वैयक्तिक माहिती येथे साठवली जात नाही.</p>
+  </footer>
+
+  <script>
     const services = [
-      {id:1, name: 'PAN कार्ड (Income Tax portal)', desc:'PAN अर्ज/स्थिती तपासा', category:'पॅन/टॅक्स', url:'https://www.incometax.gov.in/iec/foportal'},
-      {id:2, name: 'Aadhaar - UIDAI', desc:'आधार कार्ड माहिती व सेव्हिसेस', category:'आधार', url:'https://uidai.gov.in'},
-      {id:3, name: 'Passport Seva', desc:'नवीन पासपोर्ट अर्ज व अपॉइंटमेंट', category:'पासपोर्ट', url:'https://www.passportindia.gov.in'},
-      {id:4, name: 'EPFO', desc:'EPF पासबुक व सेव्हिसेस', category:'श्रम', url:'https://www.epfindia.gov.in'},
-      {id:5, name: 'Ration Card - State Portals', desc:'रेशन कार्ड अर्ज (राज्यानुसार)', category:'रेशन', url:'https://ration.example.com'},
-      {id:6, name: 'Photo Cropper (Online)', desc:'फोटो क्रॉप व एडिटिंग साधन', category:'उपयुक्त साधने', url:'https://www.photopea.com'},
-      {id:7, name: 'Govt Services - Digital Seva', desc:'Digital Seva/CSC पोर्टल', category:'सेवा केंद्र', url:'https://digitalseva.csc.gov.in'}
+      {id:1, name:'PAN कार्ड (Income Tax portal)', desc:'PAN अर्ज/स्थिती तपासा', category:'पॅन/टॅक्स', url:'https://www.incometax.gov.in/iec/foportal'},
+      {id:2, name:'Aadhaar - UIDAI', desc:'आधार कार्ड माहिती व सेव्हिसेस', category:'आधार', url:'https://uidai.gov.in'},
+      {id:3, name:'Passport Seva', desc:'नवीन पासपोर्ट अर्ज व अपॉइंटमेंट', category:'पासपोर्ट', url:'https://www.passportindia.gov.in'},
+      {id:4, name:'EPFO', desc:'EPF पासबुक व सेव्हिसेस', category:'श्रम', url:'https://www.epfindia.gov.in'},
+      {id:5, name:'Ration Card - State Portals', desc:'रेशन कार्ड अर्ज (राज्यानुसार)', category:'रेशन', url:'https://ration.example.com'},
+      {id:6, name:'Photo Cropper (Online)', desc:'फोटो क्रॉप व एडिटिंग साधन', category:'उपयुक्त साधने', url:'https://www.photopea.com'},
+      {id:7, name:'Govt Services - Digital Seva', desc:'Digital Seva/CSC पोर्टल', category:'सेवा केंद्र', url:'https://digitalseva.csc.gov.in'}
     ];
 
-    const grid = document.getElementById('grid');
-    const search = document.getElementById('search');
-    const categoryFilter = document.getElementById('categoryFilter');
+    const grid=document.getElementById('grid');
+    const search=document.getElementById('search');
+    const categoryFilter=document.getElementById('categoryFilter');
 
-    const categories = Array.from(new Set(services.map(s=>s.category)));
+    const categories=Array.from(new Set(services.map(s=>s.category)));
     categories.forEach(cat=>{
-      const opt = document.createElement('option'); opt.value=cat; opt.textContent=cat; categoryFilter.appendChild(opt);
+      const opt=document.createElement('option');
+      opt.value=cat;
+      opt.textContent=cat;
+      categoryFilter.appendChild(opt);
     });
 
     function render(list){
       grid.innerHTML='';
-      if(list.length===0){ grid.innerHTML='<div style="grid-column:1/-1;padding:20px;background:#fff;border-radius:10px;text-align:center;color:var(--muted)">कोणतीही सेवा सापडली नाही.</div>'; return }
+      if(list.length===0){
+        grid.innerHTML='<div style="grid-column:1/-1;padding:20px;background:#fff;border-radius:10px;text-align:center;color:var(--muted)">कोणतीही सेवा सापडली नाही.</div>';
+        return;
+      }
       list.forEach(s=>{
-        const card = document.createElement('div'); card.className='card';
-        card.innerHTML = `
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML=`
           <div>
             <h3>${escapeHtml(s.name)}</h3>
             <p>${escapeHtml(s.desc)}</p>
@@ -91,34 +114,40 @@ footer{padding:18px 20px;text-align:center;color:var(--muted);font-size:13px;mar
       });
     }
 
-    function escapeHtml(str){ return String(str).replace(/[&"'<>]/g, (m)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[m])) }
+    function escapeHtml(str){return String(str).replace(/[&"'<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[m]))}
 
     render(services);
 
     function filterAndRender(){
-      const q = search.value.trim().toLowerCase();
-      const cat = categoryFilter.value;
-      const filtered = services.filter(s=>{
-        const matchesQ = q === '' || s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
-        const matchesCat = cat === 'all' || s.category === cat;
-        return matchesQ && matchesCat;
+      const q=search.value.trim().toLowerCase();
+      const cat=categoryFilter.value;
+      const filtered=services.filter(s=>{
+        const matchesQ=q===''||s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)||s.category.toLowerCase().includes(q);
+        const matchesCat=cat==='all'||s.category===cat;
+        return matchesQ&&matchesCat;
       });
       render(filtered);
     }
 
-    search.addEventListener('input', filterAndRender);
-    categoryFilter.addEventListener('change', filterAndRender);
+    search.addEventListener('input',filterAndRender);
+    categoryFilter.addEventListener('change',filterAndRender);
 
-    document.body.addEventListener('click', (e)=>{
-      const openBtn = e.target.closest('.btn.open');
-      if(openBtn){ const url = openBtn.dataset.url; window.open(url, '_blank'); return }
-      const copyBtn = e.target.closest('.btn.copy');
-      if(copyBtn){ const url = copyBtn.dataset.url; navigator.clipboard.writeText(url).then(()=>{ alert('लिंक कॉपी झाली!') }).catch(()=>{ prompt('कॉपी करा (Ctrl+C):', url) }); return }
+    document.body.addEventListener('click',e=>{
+      const openBtn=e.target.closest('.btn.open');
+      if(openBtn){const url=openBtn.dataset.url;window.open(url,'_blank');return}
+      const copyBtn=e.target.closest('.btn.copy');
+      if(copyBtn){
+        const url=copyBtn.dataset.url;
+        navigator.clipboard.writeText(url).then(()=>{alert('लिंक कॉपी झाली!')}).catch(()=>{prompt('कॉपी करा (Ctrl+C):',url)});
+        return;
+      }
     });
 
     (function applyQuery(){
-      const params = new URLSearchParams(location.search);
-      const q = params.get('q'); if(q){ search.value = q; filterAndRender(); }
+      const params=new URLSearchParams(location.search);
+      const q=params.get('q');
+      if(q){search.value=q;filterAndRender();}
     })();
-  </script></body>
+  </script>
+</body>
 </html>
