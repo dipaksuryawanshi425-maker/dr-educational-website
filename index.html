@@ -57,6 +57,18 @@
           <option value="all">सर्व श्रेणी</option>
         </select>
       </div>
+
+      <!-- 🔹 Menu Button & Links -->
+      <button id="menuBtn" class="btn" style="background:#1f6feb;color:#fff;margin-top:10px;">☰ Menu</button>
+      <div id="menuList" style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
+        <a href="index.html" class="btn" style="background:#fff;">Home</a>
+        <a href="services.html" class="btn" style="background:#fff;">Service</a>
+        <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
+        <a href="learning.html" class="btn" style="background:#fff;">Learning</a>
+        <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
+        <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
+      </div>
+      <!-- 🔹 End Menu -->
     </div>
   </header>
 
@@ -152,6 +164,11 @@
       const q=params.get('q');
       if(q){search.value=q;filterAndRender();}
     })();
+
+    // 🔹 Menu Toggle (3 JS Lines)
+    const menuBtn=document.getElementById('menuBtn');
+    const menuList=document.getElementById('menuList');
+    menuBtn.addEventListener('click',()=>menuList.style.display=menuList.style.display==='none'?'flex':'none');
   </script>
 </body>
-</html>
+          </html>
