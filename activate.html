@@ -67,14 +67,14 @@ iframe{
 
 <div class="box">
   <h2>🔑 Course Activate करा</h2>
-  <p>Payment नंतर मिळालेला Activation Code टाका</p>
+  <p>Payment नंतर WhatsApp वर मिळालेला Activation Code टाका</p>
 
-  <input id="code" placeholder="Activation Code (उदा. DIPAKCSC01)">
+  <!-- EXAMPLE ONLY -->
+  <input id="code" placeholder="Activation Code (उदा. ABC123)">
   <button onclick="activateCourse()">Activate</button>
 
   <p class="note">
-    Activation Code मिळाला नसेल तर<br>
-    आधी Enroll + Payment करा.
+    ℹ️ Activation Code फक्त Payment verify झाल्यावरच दिला जातो.
   </p>
 
   <!-- CSC COURSE -->
@@ -101,12 +101,15 @@ iframe{
 function activateCourse(){
   const code = document.getElementById("code").value.trim().toUpperCase();
 
-  // सगळे course hide करा
+  // आधी सगळे hide
   document.getElementById("csc").classList.add("hidden");
   document.getElementById("computer").classList.add("hidden");
   document.getElementById("mobile").classList.add("hidden");
 
-  // Secret Activation Codes
+  /* 
+    🔐 REAL SECRET CODES (USER ला दिसत नाहीत)
+    तुम्ही WhatsApp वर जे code द्याल ते इथे match होतील
+  */
   if(code === "DIPAKCSC01"){
     document.getElementById("csc").classList.remove("hidden");
   }
@@ -123,4 +126,4 @@ function activateCourse(){
 </script>
 
 </body>
-  </html>
+    </html>
