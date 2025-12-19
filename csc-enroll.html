@@ -44,13 +44,14 @@ img{max-width:200px;margin:15px auto;display:block}
 
 <div class="box">
 
-<!-- STEP 1 -->
+<!-- STEP 1 : DETAILS -->
 <div id="step1">
   <h2>CSC कोर्स Enroll</h2>
 
   <input id="name" placeholder="Full Name">
   <input id="dob" type="date">
 
+  <!-- ONLY STATE SELECT -->
   <select id="state">
     <option value="">State निवडा</option>
     <option>Maharashtra</option>
@@ -58,28 +59,22 @@ img{max-width:200px;margin:15px auto;display:block}
     <option>Madhya Pradesh</option>
     <option>Karnataka</option>
     <option>Rajasthan</option>
+    <option>Other</option>
   </select>
 
-  <select id="district">
-    <option value="">District निवडा</option>
-  </select>
-
-  <select id="subdistrict">
-    <option value="">Taluka निवडा</option>
-  </select>
-
-  <select id="village">
-    <option value="">Village निवडा</option>
-  </select>
-
+  <!-- FREE TEXT FIELDS -->
+  <input id="district" placeholder="District">
+  <input id="subdistrict" placeholder="Taluka / Sub-District">
+  <input id="village" placeholder="Village / City">
   <input id="pincode" placeholder="Pincode">
+
   <input id="mobile" placeholder="Mobile Number">
   <input id="email" placeholder="Email ID (optional)">
 
-  <button onclick="validateForm()">पुढे जा</button>
+  <button type="button" onclick="validateForm()">पुढे जा</button>
 </div>
 
-<!-- STEP 2 -->
+<!-- STEP 2 : PAYMENT -->
 <div id="step2" class="hidden">
   <h2>₹199 Payment</h2>
 
@@ -87,114 +82,93 @@ img{max-width:200px;margin:15px auto;display:block}
 
   <div class="note">
     <b>सूचना:</b><br>
-    1️⃣ दिलेला QR code स्कॅन करून पेमेंट करावे.<br>
-    2️⃣ पेमेंट केल्यानंतर Submit वर क्लिक करावे.<br>
-    3️⃣ WhatsApp उघडल्यावर दिलेल्या मेसेजसोबत Screenshot पाठवावा.<br>
-    4️⃣ पेमेंट Verify झाल्यावर Activation Code मिळेल.<br><br>
+    1️⃣ दिलेला QR code स्कॅन करून आपल्या मोबाईल मधून पेमेंट करावे.<br>
+    2️⃣ पेमेंट केल्यानंतर खालील Submit बटन वर क्लिक करावे.<br>
+    3️⃣ WhatsApp open झाल्यानंतर दिलेल्या मेसेज सोबत तुमचा पेमेंट Screenshot Send करावा.<br>
+    4️⃣ पेमेंट Verify झाल्यानंतर तुम्हाला Activation Code मिळेल.<br><br>
     <b>सूचना:</b> पेमेंट झाले असेल तरच Activation Code मिळेल.
   </div>
 
-  <button onclick="sendWhatsApp()">Submit</button>
+  <button type="button" onclick="sendWhatsApp()">Submit</button>
 </div>
 
 </div>
 
 <script>
-/* ================= STATE → DISTRICT ================= */
-const districtData={
-  "Maharashtra":["Aurangabad","Nashik","Pune","Ahmednagar","Jalna"],
-  "Gujarat":["Ahmedabad","Surat","Rajkot"],
-  "Madhya Pradesh":["Bhopal","Indore"],
-  "Karnataka":["Bengaluru","Mysuru"],
-  "Rajasthan":["Jaipur","Jodhpur"]
-};
-
-/* ================= DISTRICT → TALUKA ================= */
-const talukaData={
-  "Aurangabad":["Vaijapur","Gangapur","Paithan","Kannad"],
-  "Nashik":["Nashik","Sinnar","Yeola"],
-  "Pune":["Pune City","Baramati","Junnar"],
-  "Ahmednagar":["Rahata","Sangamner"],
-  "Jalna":["Jalna","Ambad"]
-};
-
-/* ================= TALUKA → VILLAGE ================= */
-const villageData={
-  "Vaijapur":["Shivoor","Manoli","Lasur"],
-  "Gangapur":["Gangapur","Waluj"],
-  "Paithan":["Paithan","Bidkin"],
-  "Nashik":["Nashik City","Trimbak"],
-  "Pune City":["Shivajinagar","Kothrud"],
-  "Baramati":["Baramati","Nira"]
-};
-
-/* STATE CHANGE */
-document.getElementById("state").addEventListener("change",function(){
-  const d=document.getElementById("district");
-  d.innerHTML='<option value="">District निवडा</option>';
-  document.getElementById("subdistrict").innerHTML='<option value="">Taluka निवडा</option>';
-  document.getElementById("village").innerHTML='<option value="">Village निवडा</option>';
-  (districtData[this.value]||[]).forEach(x=>{
-    d.add(new Option(x,x));
-  });
-});
-
-/* DISTRICT CHANGE */
-document.getElementById("district").addEventListener("change",function(){
-  const t=document.getElementById("subdistrict");
-  t.innerHTML='<option value="">Taluka निवडा</option>';
-  document.getElementById("village").innerHTML='<option value="">Village निवडा</option>';
-  (talukaData[this.value]||[]).forEach(x=>{
-    t.add(new Option(x,x));
-  });
-});
-
-/* TALUKA CHANGE */
-document.getElementById("subdistrict").addEventListener("change",function(){
-  const v=document.getElementById("village");
-  v.innerHTML='<option value="">Village निवडा</option>';
-  (villageData[this.value]||[]).forEach(x=>{
-    v.add(new Option(x,x));
-  });
-});
-
-/* ================= FORM VALIDATION ================= */
 function validateForm(){
-  const name=nameVal();
-  const dob=document.getElementById("dob").value;
-  const state=stateVal();
-  const district=districtVal();
-  const taluka=talukaVal();
-  const village=villageVal();
-  const pin=document.getElementById("pincode").value.trim();
-  const mob=document.getElementById("mobile").value.trim();
-  const email=document.getElementById("email").value.trim();
 
-  if(name.split(" ").length<2) return alert("पूर्ण नाव भरा");
-  if(!dob) return alert("DOB निवडा");
+  const name = document.getElementById("name").value.trim();
+  const dob = document.getElementById("dob").value;
+  const state = document.getElementById("state").value;
+  const district = document.getElementById("district").value.trim();
+  const taluka = document.getElementById("subdistrict").value.trim();
+  const village = document.getElementById("village").value.trim();
+  const pincode = document.getElementById("pincode").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const email = document.getElementById("email").value.trim();
 
-  const age=new Date().getFullYear()-new Date(dob).getFullYear();
-  if(age<13) return alert("किमान वय 13 वर्षे आवश्यक आहे");
+  if(name.split(" ").length < 2){
+    alert("❌ कृपया पूर्ण नाव भरा");
+    return;
+  }
 
-  if(!state||!district||!taluka||!village) return alert("संपूर्ण पत्ता भरा");
-  if(!/^[0-9]{6}$/.test(pin)) return alert("योग्य Pincode भरा");
-  if(!/^[0-9]{10}$/.test(mob)) return alert("योग्य Mobile नंबर भरा");
-  if(email && !/^\S+@\S+\.\S+$/.test(email)) return alert("योग्य Email भरा");
+  if(!dob){
+    alert("❌ DOB निवडा");
+    return;
+  }
 
-  step1.classList.add("hidden");
-  step2.classList.remove("hidden");
+  // AGE CHECK (13+)
+  const birth = new Date(dob);
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  const m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+  if(age < 13){
+    alert("❌ किमान वय 13 वर्षे असणे आवश्यक आहे");
+    return;
+  }
+
+  if(!state){
+    alert("❌ State निवडा");
+    return;
+  }
+
+  // District / Taluka / Village free text → only check empty
+  if(!district || !taluka || !village){
+    alert("❌ District, Taluka आणि Village भरा");
+    return;
+  }
+
+  if(!/^[0-9]{6}$/.test(pincode)){
+    alert("❌ योग्य 6 अंकी Pincode भरा");
+    return;
+  }
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+    alert("❌ योग्य 10 अंकी Mobile नंबर भरा");
+    return;
+  }
+
+  if(email && !/^\S+@\S+\.\S+$/.test(email)){
+    alert("❌ योग्य Email ID भरा");
+    return;
+  }
+
+  // ✅ NEXT STEP
+  document.getElementById("step1").style.display="none";
+  document.getElementById("step2").style.display="block";
 }
 
-/* ================= WHATSAPP ================= */
 function sendWhatsApp(){
-  const msg=
+  const msg =
 `CSC Course Enrollment
 
-Name: ${nameVal()}
-State: ${stateVal()}
-District: ${districtVal()}
-Taluka: ${talukaVal()}
-Village: ${villageVal()}
+Name: ${name.value}
+DOB: ${dob.value}
+State: ${state.value}
+District: ${district.value}
+Taluka: ${subdistrict.value}
+Village: ${village.value}
 Pincode: ${pincode.value}
 Mobile: ${mobile.value}
 Email: ${email.value}
@@ -204,15 +178,10 @@ Email: ${email.value}
 
 कृपया माझा Activation Code द्या.`;
 
-  window.location.href="https://wa.me/919226747818?text="+encodeURIComponent(msg);
+  window.location.href =
+    "https://wa.me/919226747818?text=" +
+    encodeURIComponent(msg);
 }
-
-/* SHORTCUTS */
-const nameVal=()=>name.value.trim();
-const stateVal=()=>state.value;
-const districtVal=()=>district.value;
-const talukaVal=()=>subdistrict.value;
-const villageVal=()=>village.value;
 </script>
 
 </body>
