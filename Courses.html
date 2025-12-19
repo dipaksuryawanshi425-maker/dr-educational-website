@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Courses | DR Govt Portal</title>
+
+  <style>
+    :root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
+    *{box-sizing:border-box}
+    body{
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      margin:0; background:var(--bg); color:#111
+    }
+
+    header{
+      background:linear-gradient(90deg,#0f172a,#0b1220);
+      color:#fff; padding:20px
+    }
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:48px;height:48px;background:#fff;border-radius:8px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--accent);font-weight:700
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:#cbd5e1}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:14px;margin-top:20px
+    }
+
+    .card{
+      background:var(--card);
+      padding:16px;border-radius:10px;
+      box-shadow:0 1px 3px rgba(2,6,23,.08)
+    }
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    .meta{margin-top:8px;font-size:13px;color:#374151}
+    .meta span{display:block}
+
+    .actions{margin-top:12px}
+    .btn{
+      padding:9px 12px;border-radius:8px;
+      border:0;cursor:pointer
+    }
+    .btn.enroll{background:var(--accent);color:#fff}
+
+    footer{
+      padding:20px;text-align:center;
+      color:var(--muted);font-size:14px;
+      margin-top:40px;background:#fff;
+      border-top:1px solid #e5e7eb
+    }
+    footer a{color:var(--accent);text-decoration:none}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">DR</div>
+      <div>
+        <h1>Courses</h1>
+        <p class="lead">ऑनलाईन व ऑफलाईन ट्रेनिंग कोर्सेस</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>CSC ऑनलाईन कोर्स</h3>
+      <p>CSC Portal, Government Services, Online Application Training.</p>
+      <div class="meta">
+        <span>⏱ कालावधी: 7 दिवस</span>
+        <span>💰 फी: ₹999</span>
+      </div>
+      <div class="actions">
+        <button class="btn enroll" onclick="enroll('CSC ऑनलाईन कोर्स')">
+          Enroll Now
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>कॉम्प्युटर बेसिक</h3>
+      <p>MS Word, Excel, Internet, Email, Typing Training.</p>
+      <div class="meta">
+        <span>⏱ कालावधी: 1 महिना</span>
+        <span>💰 फी: ₹1499</span>
+      </div>
+      <div class="actions">
+        <button class="btn enroll" onclick="enroll('कॉम्प्युटर बेसिक कोर्स')">
+          Enroll Now
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>मोबाईल कोर्स</h3>
+      <p>Smartphone usage, Apps, Online Payments, UPI Training.</p>
+      <div class="meta">
+        <span>⏱ कालावधी: 5 दिवस</span>
+        <span>💰 फी: ₹799</span>
+      </div>
+      <div class="actions">
+        <button class="btn enroll" onclick="enroll('मोबाईल कोर्स')">
+          Enroll Now
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    <a href="index.html">Home</a> |
+    <a href="privacy.html">Privacy</a> |
+    <a href="disclaimer.html">Disclaimer</a>
+  </p>
+  <p>© 2025 DR Govt Portal</p>
+</footer>
+
+<script>
+  function enroll(courseName){
+    const msg = encodeURIComponent(
+      "नमस्कार, मला " + courseName + " मध्ये प्रवेश घ्यायचा आहे."
+    );
+    window.open(
+      "https://wa.me/919226747818?text=" + msg,
+      "_blank"
+    );
+  }
+</script>
+
+</body>
+</html>
