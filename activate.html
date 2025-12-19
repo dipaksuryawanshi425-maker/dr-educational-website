@@ -6,7 +6,11 @@
 <title>Activate Course</title>
 
 <style>
-body{font-family:system-ui;background:#f3f4f6;margin:0}
+body{
+  font-family:system-ui;
+  background:#f3f4f6;
+  margin:0;
+}
 .box{
   max-width:420px;
   margin:40px auto;
@@ -54,12 +58,6 @@ iframe{
   font-weight:600;
   margin-top:10px;
 }
-.example{
-  font-size:13px;
-  color:#555;
-  text-align:left;
-  margin-bottom:10px;
-}
 </style>
 </head>
 
@@ -67,13 +65,7 @@ iframe{
 
 <div class="box">
   <h2>🔑 Course Activate करा</h2>
-
-  <!-- SAFE EXAMPLE -->
-  <div class="example">
-    <b>Example:</b><br>
-    Name : Abc<br>
-    Activation Code : Abc@1234
-  </div>
+  <p>Full Name आणि Activation Code टाका</p>
 
   <input id="fullname" placeholder="Full Name">
   <input id="code" placeholder="Activation Code">
@@ -89,7 +81,10 @@ iframe{
 </div>
 
 <script>
-/* ADMISSION REGISTER */
+/*
+  📒 ADMISSION REGISTER
+  Full Name + Activation Code
+*/
 const students = {
   "DNYANESHWARI PRALHAD JADHAV": {
     code: "DNYANESHWARI@2007",
@@ -121,7 +116,7 @@ function activateCourse(){
     return;
   }
 
-  // ✅ BOTH MATCH
+  // ✅ BOTH MATCH → ACTIVATE
   document.getElementById("csc").style.display="block";
 }
 </script>
