@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSC Course Enroll</title>
+
+<style>
+body{margin:0;font-family:system-ui;background:#f3f4f6}
+.box{
+  max-width:420px;
+  margin:30px auto;
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.1)
+}
+h2{text-align:center;margin-top:0}
+input,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#1f6feb;
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+.hidden{display:none}
+img{max-width:200px;margin:15px auto;display:block}
+.note{
+  font-size:14px;
+  color:#444;
+  line-height:1.6
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <!-- STEP 1 FORM -->
+  <div id="step1">
+    <h2>CSC कोर्स Enroll</h2>
+
+    <input id="name" placeholder="Full Name">
+    <input id="dob" type="date">
+
+    <select id="state">
+      <option value="">State निवडा</option>
+      <option>Maharashtra</option>
+      <option>Gujarat</option>
+      <option>Madhya Pradesh</option>
+      <option>Karnataka</option>
+      <option>Rajasthan</option>
+      <option>Other</option>
+    </select>
+
+    <input id="mobile" placeholder="Mobile Number">
+    <input id="email" placeholder="Email ID (optional)">
+
+    <button onclick="validateForm()">पुढे जा</button>
+  </div>
+
+  <!-- STEP 2 PAYMENT -->
+  <div id="step2" class="hidden">
+    <h2>₹199 Payment</h2>
+
+    <img src="upi-qr.png" alt="UPI QR Code">
+
+    <div class="note">
+      <b>सूचना:</b><br>
+      1️⃣ दिलेला QR code स्कॅन करून आपल्या मोबाईल मधून पेमेंट करावे.<br>
+      2️⃣ पेमेंट केल्यानंतर खालील बटन वर क्लिक करावे.<br>
+      3️⃣ WhatsApp open झाल्यानंतर दिलेल्या मेसेज सोबत तुमचा पेमेंट स्क्रीनशॉट Send करावा.<br>
+      4️⃣ वरील प्रोसेस पूर्ण झाल्यानंतर पेमेंट झाले असेल तर तुम्हाला Activation Code मिळेल.<br><br>
+      <b>सूचना:</b> पेमेंट झाले असेल तरच Activation Code मिळेल.
+    </div>
+
+    <button onclick="sendWhatsApp()">Submit</button>
+  </div>
+
+</div>
+
+<script>
+function validateForm(){
+  const name=document.getElementById("name").value.trim();
+  const dob=document.getElementById("dob").value;
+  const state=document.getElementById("state").value;
+  const mobile=document.getElementById("mobile").value.trim();
+  const email=document.getElementById("email").value.trim();
+
+  if(name.split(" ").length < 2){
+    alert("कृपया पूर्ण नाव भरा");
+    return;
+  }
+  if(!dob){
+    alert("DOB निवडा");
+    return;
+  }
+  if(!state){
+    alert("State निवडा");
+    return;
+  }
+  if(!/^[0-9]{10}$/.test(mobile)){
+    alert("योग्य Mobile नंबर भरा");
+    return;
+  }
+  if(email && !/^\S+@\S+\.\S+$/.test(email)){
+    alert("योग्य Email ID भरा");
+    return;
+  }
+
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+}
+
+function sendWhatsApp(){
+  const name=document.getElementById("name").value;
+  const mobile=document.getElementById("mobile").value;
+  const email=document.getElementById("email").value;
+
+  const msg=
+`CSC Course Enrollment
+
+Name: ${name}
+Mobile: ${mobile}
+Email: ${email}
+
+मी ₹199 CSC Course साठी Payment केला आहे.
+मी Payment Screenshot पाठवत आहे.
+
+कृपया माझा Activation Code द्या.`;
+
+  window.location.href=
+    "https://wa.me/919226747818?text="+encodeURIComponent(msg);
+}
+</script>
+
+</body>
+  </html>
