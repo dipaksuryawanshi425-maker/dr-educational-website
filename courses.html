@@ -6,22 +6,73 @@
 <title>Courses | DR Govt Portal</title>
 
 <style>
-body{margin:0;font-family:system-ui;background:#f3f4f6}
-header{background:#0f172a;color:#fff;padding:20px}
-.container{max-width:1000px;margin:auto;padding:20px}
+:root{
+  --primary:#1f6feb;
+  --green:#22c55e;
+  --bg:#f3f4f6;
+  --card:#ffffff;
+}
+body{
+  margin:0;
+  font-family:system-ui, Arial;
+  background:var(--bg);
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#0b1220);
+  color:#fff;
+  padding:20px;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+.card h3{margin:0 0 8px}
+.card p{margin:4px 0;color:#555;font-size:15px}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{background:#fff;padding:18px;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
-.btn{margin-top:12px;width:100%;padding:12px;border:none;border-radius:10px;background:#1f6feb;color:#fff;font-size:15px;cursor:pointer}
+.price{
+  font-size:20px;
+  font-weight:700;
+  color:#111;
+}
+.old{
+  text-decoration:line-through;
+  color:#888;
+  font-size:14px;
+  margin-left:6px;
+}
 
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999}
-.box{background:#fff;max-width:420px;margin:40px auto;padding:22px;border-radius:14px}
-
-input,select{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #ccc}
-
-.step{display:none;text-align:center}
-.step img{max-width:200px;margin:15px auto}
-.note{font-size:14px;color:#444}
+.btn{
+  margin-top:12px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:var(--primary);
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+.btn.activate{
+  background:var(--green);
+}
+.note{
+  text-align:center;
+  margin-top:30px;
+  color:#444;
+}
 </style>
 </head>
 
@@ -30,157 +81,68 @@ input,select{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px s
 <header>
   <div class="container">
     <h2>आमचे कोर्सेस</h2>
-    <p>Enroll करा आणि लगेच प्रवेश प्रक्रिया सुरू करा</p>
+    <p>Enroll करा → Payment करा → Activation Code वापरून Course सुरू करा</p>
   </div>
 </header>
 
 <main class="container">
   <div class="grid">
 
+    <!-- CSC COURSE -->
     <div class="card">
       <h3>CSC ऑनलाईन कोर्स</h3>
-      <p>फी: ₹999</p>
-      <button class="btn" onclick="openForm('CSC ऑनलाईन कोर्स')">Enroll Now</button>
+      <p>
+        <span class="price">₹199</span>
+        <span class="old">₹999</span>
+      </p>
+      <p>CSC Portal, PAN, Aadhaar, Govt Services</p>
+      <button class="btn"
+        onclick="alert('₹199 Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+        Enroll Now
+      </button>
     </div>
 
+    <!-- COMPUTER COURSE -->
     <div class="card">
-      <h3>कॉम्प्युटर बेसिक</h3>
-      <p>फी: ₹1499</p>
-      <button class="btn" onclick="openForm('कॉम्प्युटर बेसिक')">Enroll Now</button>
+      <h3>कॉम्प्युटर बेसिक कोर्स</h3>
+      <p>
+        <span class="price">₹1499</span>
+      </p>
+      <p>Basic Computer, Internet, MS Office</p>
+      <button class="btn"
+        onclick="alert('Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+        Enroll Now
+      </button>
     </div>
 
+    <!-- MOBILE COURSE -->
     <div class="card">
-      <h3>मोबाईल कोर्स</h3>
-      <p>फी: ₹799</p>
-      <button class="btn" onclick="openForm('मोबाईल कोर्स')">Enroll Now</button>
+      <h3>मोबाईल रिपेअरिंग कोर्स</h3>
+      <p>
+        <span class="price">₹799</span>
+      </p>
+      <p>Mobile Software + Hardware Basics</p>
+      <button class="btn"
+        onclick="alert('Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+        Enroll Now
+      </button>
     </div>
 
   </div>
+
+  <!-- ACTIVATE COURSE -->
+  <div class="note">
+    <h3>Payment झाला आहे का?</h3>
+    <p>Activation Code मिळाला असेल तर खाली क्लिक करा</p>
+
+    <a href="activate.html">
+      <button class="btn activate">
+        🔑 Activate Course
+      </button>
+    </a>
+  </div>
+
 </main>
 
-<!-- POPUP -->
-<div class="overlay" id="overlay">
-  <div class="box">
-
-    <!-- STEP 1 FORM -->
-    <div id="step1">
-      <h3>Student माहिती भरा</h3>
-      <input type="hidden" id="course">
-
-      <input id="name" placeholder="Full Name">
-      <input id="dob" type="date">
-      <select id="state">
-        <option value="">State निवडा</option>
-        <option>Maharashtra</option>
-        <option>Gujarat</option>
-        <option>Madhya Pradesh</option>
-        <option>Karnataka</option>
-        <option>Rajasthan</option>
-        <option>Other</option>
-      </select>
-      <input id="mobile" placeholder="Mobile Number">
-      <input id="email" placeholder="Email ID">
-
-      <button class="btn" onclick="validateForm()">Submit</button>
-      <button class="btn" style="background:#999" onclick="closeAll()">Cancel</button>
-    </div>
-
-    <!-- STEP 2 SUCCESS -->
-    <div id="step2" class="step">
-      <h3>✅ Registration Successfully</h3>
-      <p class="note">
-        1️⃣ खाली दिलेल्या QR Code वर Payment करा<br>
-        2️⃣ Payment झाल्यावर Screenshot घ्या<br>
-        3️⃣ पुढे जा बटनावर क्लिक करा
-      </p>
-      <button class="btn" onclick="showQR()">पुढे जा</button>
-    </div>
-
-    <!-- STEP 3 QR + UPLOAD -->
-    <div id="step3" class="step">
-      <h3>Payment QR Code</h3>
-      <img src="upi-qr.png" alt="UPI QR">
-      <p class="note">
-        Payment झाल्यावर Screenshot घ्या<br>
-        आणि WhatsApp वर पाठवा
-      </p>
-      <input type="file" id="screenshot" accept="image/*">
-      <button class="btn" onclick="sendWhatsApp()">WhatsApp वर पाठवा</button>
-    </div>
-
-  </div>
-</div>
-
-<script>
-function openForm(course){
-  document.getElementById("course").value=course;
-  document.getElementById("overlay").style.display="block";
-  showStep(1);
-}
-
-function closeAll(){
-  document.getElementById("overlay").style.display="none";
-}
-
-function showStep(n){
-  document.getElementById("step1").style.display="none";
-  document.getElementById("step2").style.display="none";
-  document.getElementById("step3").style.display="none";
-  document.getElementById("step"+n).style.display="block";
-}
-
-function validateForm(){
-  let name=nameEl=document.getElementById("name").value.trim();
-  let dob=document.getElementById("dob").value;
-  let mobile=document.getElementById("mobile").value.trim();
-  let email=document.getElementById("email").value.trim();
-  let state=document.getElementById("state").value;
-
-  if(name.split(" ").length<2){alert("पूर्ण नाव भरा");return;}
-  if(!dob){alert("DOB आवश्यक आहे");return;}
-
-  let age=Math.floor((new Date()-new Date(dob))/(365.25*24*60*60*1000));
-  if(age<13){alert("Student किमान 13 वर्षांचा असावा");return;}
-
-  if(!/^[0-9]{10}$/.test(mobile)){alert("योग्य Mobile नंबर भरा");return;}
-  if(!/^\S+@\S+\.\S+$/.test(email)){alert("योग्य Email भरा");return;}
-  if(!state){alert("State निवडा");return;}
-
-  showStep(2);
-}
-
-function showQR(){
-  showStep(3);
-}
-
-function sendWhatsApp(){
-  let course=document.getElementById("course").value;
-  let name=document.getElementById("name").value;
-  let mobile=document.getElementById("mobile").value;
-  let email=document.getElementById("email").value;
-
-  let amount="₹799";
-  if(course.includes("CSC")) amount="₹999";
-  else if(course.includes("कॉम्प्युटर")) amount="₹1499";
-
-  let msg=
-`नवीन Admission Request
-
-कोर्स: ${course}
-नाव: ${name}
-Mobile: ${mobile}
-Email: ${email}
-
-Payment Details:
-UPI ID: 9226747818@upi
-रक्कम: ${amount}
-
-मी Payment करून Screenshot पाठवत आहे.`;
-
-  window.location.href=
-    "https://wa.me/919226747818?text="+encodeURIComponent(msg);
-}
-</script>
-
 </body>
-        </html>
+</html>
