@@ -1,24 +1,93 @@
-
 <!doctype html>
 <html lang="mr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Courses | DR Govt Portal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Courses | DR Govt Portal</title>
 
-  <style>
-    body{font-family:Arial;margin:0;background:#f3f4f6}
-    header{background:#0f172a;color:#fff;padding:20px}
-    .container{max-width:1100px;margin:auto;padding:20px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+<style>
+:root{
+  --primary:#1f6feb;
+  --bg:#f3f4f6;
+  --card:#ffffff;
+}
+body{
+  margin:0;
+  font-family:system-ui, Arial;
+  background:var(--bg);
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#0b1220);
+  color:#fff;
+  padding:20px;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+.card h3{margin:0 0 8px}
+.card p{margin:0;color:#555}
 
-    .card{background:#fff;padding:15px;border-radius:10px}
-    .card h3{margin:0}
-    .btn{margin-top:10px;padding:10px;width:100%;background:#1f6feb;color:#fff;border:none;border-radius:6px;cursor:pointer}
+.btn{
+  margin-top:14px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:var(--primary);
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    /* Popup */
-    input,select{width:100%;padding:8px;margin:5px 0}
-  </style>
+/* POPUP FORM */
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:999;
+}
+.form-box{
+  background:#fff;
+  max-width:420px;
+  margin:40px auto;
+  padding:22px;
+  border-radius:14px;
+}
+.form-box h3{
+  margin-top:0;
+  text-align:center;
+}
+input,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+.note{
+  font-size:13px;
+  color:#555;
+  margin-top:6px;
+}
+.cancel{
+  background:#9ca3af;
+}
+</style>
 </head>
 
 <body>
@@ -26,6 +95,7 @@
 <header>
   <div class="container">
     <h2>आमचे कोर्सेस</h2>
+    <p>Enroll करा आणि लगेच प्रवेश प्रक्रिया सुरू करा</p>
   </div>
 </header>
 
@@ -53,72 +123,56 @@
   </div>
 </main>
 
-<!-- POPUP FORM -->
-<div id="admissionForm" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6)">
-  <div style="background:#fff;max-width:400px;margin:30px auto;padding:20px;border-radius:10px">
+<!-- FORM POPUP -->
+<div class="overlay" id="overlay">
+  <div class="form-box">
+    <h3>कोर्स मध्ये समाविष्ट होण्यासाठी माहिती भरा</h3>
 
-    <h3>कोर्स मध्ये समाविष्ट होण्यासाठी डिटेल भरा</h3>
+    <input type="hidden" id="course">
 
-    <input id="course" type="hidden">
-    <input id="name" placeholder="Student Name">
-    <input id="class" placeholder="Class">
-    <select id="gender">
-      <option value="">Gender</option>
-      <option>Male</option>
-      <option>Female</option>
-    </select>
+    <input id="name" placeholder="Full Name">
     <input id="dob" type="date">
-    <input id="mobile" placeholder="Mobile Number">
-    <input id="email" placeholder="Email ID">
 
-    <div>
-      <span id="captchaText"></span>
-      <input id="captchaInput" placeholder="Captcha">
-    </div>
+    <select id="state">
+      <option value="">State निवडा</option>
+      <option>Maharashtra</option>
+      <option>Gujarat</option>
+      <option>Madhya Pradesh</option>
+      <option>Karnataka</option>
+      <option>Rajasthan</option>
+      <option>Other</option>
+    </select>
+
+    <input id="mobile" placeholder="Mobile Number">
+    <input id="email" placeholder="Email ID (optional)">
+
+    <p class="note">DOB भरणे अनिवार्य आहे</p>
 
     <button class="btn" onclick="submitForm()">Submit & WhatsApp</button>
-    <button class="btn" style="background:#999" onclick="closeForm()">Cancel</button>
-
+    <button class="btn cancel" onclick="closeForm()">Cancel</button>
   </div>
 </div>
 
 <script>
-let captchaAns=0;
-
 function openForm(course){
-  document.getElementById("course").value=course;
-  document.getElementById("admissionForm").style.display="block";
-  genCaptcha();
+  document.getElementById("course").value = course;
+  document.getElementById("overlay").style.display="block";
 }
 
 function closeForm(){
-  document.getElementById("admissionForm").style.display="none";
-}
-
-function genCaptcha(){
-  let a=Math.floor(Math.random()*10)+1;
-  let b=Math.floor(Math.random()*10)+1;
-  captchaAns=a+b;
-  document.getElementById("captchaText").innerText="Captcha: "+a+" + "+b+" = ?";
+  document.getElementById("overlay").style.display="none";
 }
 
 function submitForm(){
-  let name=nameEl.value=document.getElementById("name").value;
-  let cls=document.getElementById("class").value;
-  let gender=document.getElementById("gender").value;
+  let name=document.getElementById("name").value;
   let dob=document.getElementById("dob").value;
+  let state=document.getElementById("state").value;
   let mobile=document.getElementById("mobile").value;
   let email=document.getElementById("email").value;
-  let captcha=document.getElementById("captchaInput").value;
   let course=document.getElementById("course").value;
 
-  if(!name||!cls||!gender||!dob||!mobile){
-    alert("सगळी माहिती भरा");
-    return;
-  }
-  if(parseInt(captcha)!==captchaAns){
-    alert("Captcha चुकीचा आहे");
-    genCaptcha();
+  if(!name || !dob || !mobile || !state){
+    alert("Name, DOB, Mobile आणि State आवश्यक आहेत");
     return;
   }
 
@@ -132,10 +186,9 @@ function submitForm(){
 
 कोर्स: ${course}
 नाव: ${name}
-क्लास: ${cls}
-Gender: ${gender}
 DOB: ${dob}
-मोबाईल: ${mobile}
+State: ${state}
+Mobile: ${mobile}
 Email: ${email}
 
 👉 Payment Details:
@@ -146,7 +199,12 @@ UPI ID: 9226747818@upi
 Payment झाल्यावर
 ➡️ Screenshot ह्याच WhatsApp वर पाठवा.`;
 
-  window.open("https://wa.me/919226747818?text="+encodeURIComponent(msg),"_blank");
+  // popup बंद
+  document.getElementById("overlay").style.display="none";
+
+  // SAME TAB WhatsApp redirect
+  window.location.href =
+    "https://wa.me/919226747818?text=" + encodeURIComponent(msg);
 }
 </script>
 
