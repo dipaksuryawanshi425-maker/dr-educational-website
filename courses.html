@@ -12,67 +12,36 @@
   --bg:#f3f4f6;
   --card:#ffffff;
 }
-body{
-  margin:0;
-  font-family:system-ui, Arial;
-  background:var(--bg);
-}
-header{
-  background:linear-gradient(90deg,#0f172a,#0b1220);
-  color:#fff;
-  padding:20px;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
+body{margin:0;font-family:system-ui;background:var(--bg)}
+header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px}
+.container{max-width:1100px;margin:auto;padding:20px}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:16px;
-  margin-top:20px;
 }
 .card{
-  background:var(--card);
-  border-radius:14px;
+  background:#fff;
   padding:18px;
+  border-radius:14px;
   box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
-.card h3{margin:0 0 8px}
-.card p{margin:4px 0;color:#555;font-size:15px}
-
-.price{
-  font-size:20px;
-  font-weight:700;
-  color:#111;
-}
-.old{
-  text-decoration:line-through;
-  color:#888;
-  font-size:14px;
-  margin-left:6px;
-}
+.price{font-size:20px;font-weight:700}
+.old{font-size:14px;color:#888;text-decoration:line-through;margin-left:6px}
 
 .btn{
-  margin-top:12px;
   width:100%;
   padding:12px;
+  margin-top:10px;
   border:none;
   border-radius:10px;
-  background:var(--primary);
-  color:#fff;
   font-size:15px;
   cursor:pointer;
 }
-.btn.activate{
-  background:var(--green);
-}
-.note{
-  text-align:center;
-  margin-top:30px;
-  color:#444;
-}
+.enroll{background:var(--primary);color:#fff}
+.activate{background:var(--green);color:#fff}
+.note{text-align:center;margin-top:30px;color:#444}
 </style>
 </head>
 
@@ -88,61 +57,98 @@ header{
 <main class="container">
   <div class="grid">
 
-    <!-- CSC COURSE -->
+    <!-- 1. CSC COURSE -->
     <div class="card">
       <h3>CSC ऑनलाईन कोर्स</h3>
       <p>
         <span class="price">₹199</span>
         <span class="old">₹999</span>
       </p>
-      <p>CSC Portal, PAN, Aadhaar, Govt Services</p>
-      <button class="btn"
-        onclick="alert('₹199 Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+
+      <button class="btn enroll" onclick="enroll('CSC',199)">
         Enroll Now
+      </button>
+
+      <button class="btn activate"
+        onclick="activateAsk('CSC',199)">
+        Activate Course
       </button>
     </div>
 
-    <!-- COMPUTER COURSE -->
+    <!-- 2. COMPUTER COURSE -->
     <div class="card">
       <h3>कॉम्प्युटर बेसिक कोर्स</h3>
-      <p>
-        <span class="price">₹1499</span>
-      </p>
-      <p>Basic Computer, Internet, MS Office</p>
-      <button class="btn"
-        onclick="alert('Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+      <p><span class="price">₹1499</span></p>
+
+      <button class="btn enroll" onclick="enroll('COMPUTER',1499)">
         Enroll Now
+      </button>
+
+      <button class="btn activate"
+        onclick="activateAsk('COMPUTER',1499)">
+        Activate Course
       </button>
     </div>
 
-    <!-- MOBILE COURSE -->
+    <!-- 3. MOBILE COURSE -->
     <div class="card">
       <h3>मोबाईल रिपेअरिंग कोर्स</h3>
-      <p>
-        <span class="price">₹799</span>
-      </p>
-      <p>Mobile Software + Hardware Basics</p>
-      <button class="btn"
-        onclick="alert('Payment QR Code वर करा आणि Screenshot WhatsApp वर पाठवा')">
+      <p><span class="price">₹799</span></p>
+
+      <button class="btn enroll" onclick="enroll('MOBILE',799)">
         Enroll Now
+      </button>
+
+      <button class="btn activate"
+        onclick="activateAsk('MOBILE',799)">
+        Activate Course
       </button>
     </div>
 
   </div>
 
-  <!-- ACTIVATE COURSE -->
   <div class="note">
-    <h3>Payment झाला आहे का?</h3>
-    <p>Activation Code मिळाला असेल तर खाली क्लिक करा</p>
-
-    <a href="activate.html">
-      <button class="btn activate">
-        🔑 Activate Course
-      </button>
-    </a>
+    ℹ️ Enroll न करता थेट Activate केल्यास Course सुरू होणार नाही
   </div>
-
 </main>
 
+<script>
+// Enroll process (तुमची जुनी process इथेच राहील)
+function enroll(course, amount){
+  alert(
+    "कोर्स: " + course + "\n" +
+    "Fees: ₹" + amount + "\n\n" +
+    "Step 1: Details भरा\n" +
+    "Step 2: QR Code वर Payment करा\n" +
+    "Step 3: WhatsApp वर Screenshot पाठवा\n\n" +
+    "Payment verify झाल्यावर तुम्हाला Activation Code मिळेल."
+  );
+
+  // इथेच तुमची आधीची:
+  // form → QR → WhatsApp process call होते
+}
+
+// Activate विचारणा (तुमच्या exact wording प्रमाणे)
+function activateAsk(course, amount){
+  const yes = confirm(
+    course + " Course\n\n" +
+    "तुम्ही ₹" + amount + " Payment केले आहे का?\n" +
+    "आणि तुमच्याकडे Activation Code मिळाला आहे का?"
+  );
+
+  if(yes){
+    // हो दाबल्यावर
+    window.location.href = "activate.html";
+  }else{
+    // नाही दाबल्यावर
+    alert(
+      "सूचना:\n\n" +
+      "तुम्ही आधी Enroll करणे आवश्यक आहे.\n" +
+      "Payment केल्यानंतरच Activation Code मिळेल."
+    );
+  }
+}
+</script>
+
 </body>
-</html>
+  </html>
