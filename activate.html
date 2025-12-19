@@ -3,14 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Activate Course | DR Govt Portal</title>
+<title>Activate Course</title>
 
 <style>
-body{
-  margin:0;
-  font-family:system-ui, Arial;
-  background:#f3f4f6;
-}
+body{font-family:system-ui;background:#f3f4f6;margin:0}
 .box{
   max-width:420px;
   margin:40px auto;
@@ -20,14 +16,12 @@ body{
   box-shadow:0 6px 16px rgba(0,0,0,.1);
   text-align:center;
 }
-h2{margin-top:0}
 input{
   width:100%;
   padding:12px;
-  margin:12px 0;
+  margin:10px 0;
   border-radius:8px;
   border:1px solid #ccc;
-  font-size:15px;
 }
 button{
   width:100%;
@@ -39,13 +33,8 @@ button{
   font-size:15px;
   cursor:pointer;
 }
-.note{
-  font-size:14px;
-  color:#555;
-  margin-top:12px;
-}
-.hidden{display:none}
 .course{
+  display:none;
   margin-top:20px;
   text-align:left;
 }
@@ -58,6 +47,11 @@ iframe{
 .success{
   color:#16a34a;
   font-weight:700;
+  margin-bottom:10px;
+}
+.error{
+  color:#dc2626;
+  font-weight:600;
   margin-top:10px;
 }
 </style>
@@ -67,63 +61,61 @@ iframe{
 
 <div class="box">
   <h2>🔑 Course Activate करा</h2>
-  <p>Payment नंतर WhatsApp वर मिळालेला Activation Code टाका</p>
+  <p>Full Name आणि Activation Code टाका</p>
 
-  <!-- EXAMPLE ONLY -->
-  <input id="code" placeholder="Activation Code (उदा. ABC123)">
+  <input id="fullname" placeholder="Full Name (उदा. Dnyaneshwari Pralhad Jadhav)">
+  <input id="code" placeholder="Activation Code (उदा. Dnyaneshwari@2007)">
   <button onclick="activateCourse()">Activate</button>
 
-  <p class="note">
-    ℹ️ Activation Code फक्त Payment verify झाल्यावरच दिला जातो.
-  </p>
+  <div id="msg" class="error"></div>
 
   <!-- CSC COURSE -->
-  <div id="csc" class="course hidden">
-    <p class="success">✅ CSC Course Activated</p>
+  <div id="csc" class="course">
+    <div class="success">✅ CSC Course Activated</div>
     <iframe src="https://www.youtube.com/embed/VIDEO_ID_CSC"></iframe>
   </div>
-
-  <!-- COMPUTER COURSE -->
-  <div id="computer" class="course hidden">
-    <p class="success">✅ Computer Course Activated</p>
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_COMPUTER"></iframe>
-  </div>
-
-  <!-- MOBILE COURSE -->
-  <div id="mobile" class="course hidden">
-    <p class="success">✅ Mobile Course Activated</p>
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_MOBILE"></iframe>
-  </div>
-
 </div>
 
 <script>
+/*
+  📒 ADMISSION REGISTER
+  Full Name + Activation Code pair
+*/
+const students = {
+  "DNYANESHWARI PRALHAD JADHAV": {
+    code: "DNYANESHWARI@2007",
+    course: "csc"
+  },
+  "DIPAK KHANDU SURYAWANSHI": {
+    code: "DIPAK@2005",
+    course: "csc"
+  }
+};
+
 function activateCourse(){
-  const code = document.getElementById("code").value.trim().toUpperCase();
+  const nameInput = document.getElementById("fullname").value.trim().toUpperCase();
+  const codeInput = document.getElementById("code").value.trim().toUpperCase();
+  const msg = document.getElementById("msg");
 
-  // आधी सगळे hide
-  document.getElementById("csc").classList.add("hidden");
-  document.getElementById("computer").classList.add("hidden");
-  document.getElementById("mobile").classList.add("hidden");
+  msg.textContent = "";
+  document.getElementById("csc").style.display="none";
 
-  /* 
-    🔐 REAL SECRET CODES (USER ला दिसत नाहीत)
-    तुम्ही WhatsApp वर जे code द्याल ते इथे match होतील
-  */
-  if(code === "DIPAKCSC01"){
-    document.getElementById("csc").classList.remove("hidden");
+  // 🔍 Name exists?
+  if(!students[nameInput]){
+    msg.textContent = "❌ नाव सापडले नाही. कृपया नाव तपासा.";
+    return;
   }
-  else if(code === "DIPAKC02"){
-    document.getElementById("computer").classList.remove("hidden");
+
+  // 🔐 Code match?
+  if(students[nameInput].code !== codeInput){
+    msg.textContent = "❌ Activation Code चुकीचा आहे.";
+    return;
   }
-  else if(code === "DIPAKM02"){
-    document.getElementById("mobile").classList.remove("hidden");
-  }
-  else{
-    alert("❌ Activation Code चुकीचा आहे. कृपया Payment verify करा.");
-  }
+
+  // ✅ BOTH MATCH → ACTIVATE
+  document.getElementById("csc").style.display="block";
 }
 </script>
 
 </body>
-    </html>
+</html>
