@@ -9,13 +9,24 @@
 :root{
   --primary:#1f6feb;
   --green:#22c55e;
+  --orange:#f59e0b;
   --bg:#f3f4f6;
-  --card:#ffffff;
 }
-body{margin:0;font-family:system-ui;background:var(--bg)}
-header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px}
-.container{max-width:1100px;margin:auto;padding:20px}
-
+body{
+  margin:0;
+  font-family:system-ui;
+  background:var(--bg);
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#0b1220);
+  color:#fff;
+  padding:20px;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -27,9 +38,16 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
   border-radius:14px;
   box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
-.price{font-size:20px;font-weight:700}
-.old{font-size:14px;color:#888;text-decoration:line-through;margin-left:6px}
-
+.price{
+  font-size:20px;
+  font-weight:700;
+}
+.old{
+  font-size:14px;
+  color:#888;
+  text-decoration:line-through;
+  margin-left:6px;
+}
 .btn{
   width:100%;
   padding:12px;
@@ -41,7 +59,12 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
 }
 .enroll{background:var(--primary);color:#fff}
 .activate{background:var(--green);color:#fff}
-.note{text-align:center;margin-top:30px;color:#444}
+.help{background:var(--orange);color:#fff}
+.note{
+  text-align:center;
+  margin-top:30px;
+  color:#444;
+}
 a{text-decoration:none}
 </style>
 </head>
@@ -58,7 +81,7 @@ a{text-decoration:none}
 <main class="container">
   <div class="grid">
 
-    <!-- 1. CSC COURSE -->
+    <!-- CSC COURSE -->
     <div class="card">
       <h3>CSC ऑनलाईन कोर्स</h3>
       <p>
@@ -66,25 +89,30 @@ a{text-decoration:none}
         <span class="old">₹999</span>
       </p>
 
-      <!-- CSC ENROLL -->
+      <!-- Enroll -->
       <a href="csc-enroll.html">
         <button class="btn enroll">Enroll Now</button>
       </a>
 
-      <!-- CSC ACTIVATE -->
+      <!-- Activate -->
       <button class="btn activate"
         onclick="activateAsk('CSC',199)">
         Activate Course
       </button>
+
+      <!-- Help -->
+      <a href="tel:9226747818">
+        <button class="btn help">📞 Help</button>
+      </a>
     </div>
 
-    <!-- 2. COMPUTER COURSE -->
+    <!-- COMPUTER COURSE -->
     <div class="card">
       <h3>कॉम्प्युटर बेसिक कोर्स</h3>
       <p><span class="price">₹1499</span></p>
 
       <button class="btn enroll"
-        onclick="alert('Computer Course Enroll page पुढे जोडता येईल')">
+        onclick="alert('Computer Course Enroll page लवकरच येईल')">
         Enroll Now
       </button>
 
@@ -92,15 +120,19 @@ a{text-decoration:none}
         onclick="activateAsk('COMPUTER',1499)">
         Activate Course
       </button>
+
+      <a href="tel:9226747818">
+        <button class="btn help">📞 Help</button>
+      </a>
     </div>
 
-    <!-- 3. MOBILE COURSE -->
+    <!-- MOBILE COURSE -->
     <div class="card">
       <h3>मोबाईल रिपेअरिंग कोर्स</h3>
       <p><span class="price">₹799</span></p>
 
       <button class="btn enroll"
-        onclick="alert('Mobile Course Enroll page पुढे जोडता येईल')">
+        onclick="alert('Mobile Course Enroll page लवकरच येईल')">
         Enroll Now
       </button>
 
@@ -108,6 +140,10 @@ a{text-decoration:none}
         onclick="activateAsk('MOBILE',799)">
         Activate Course
       </button>
+
+      <a href="tel:9226747818">
+        <button class="btn help">📞 Help</button>
+      </a>
     </div>
 
   </div>
@@ -138,4 +174,4 @@ function activateAsk(course, amount){
 </script>
 
 </body>
-  </html>
+        </html>
