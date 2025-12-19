@@ -54,6 +54,12 @@ iframe{
   font-weight:600;
   margin-top:10px;
 }
+.example{
+  font-size:13px;
+  color:#555;
+  text-align:left;
+  margin-bottom:10px;
+}
 </style>
 </head>
 
@@ -61,10 +67,16 @@ iframe{
 
 <div class="box">
   <h2>🔑 Course Activate करा</h2>
-  <p>Full Name आणि Activation Code टाका</p>
 
-  <input id="fullname" placeholder="Full Name (उदा. Dnyaneshwari Pralhad Jadhav)">
-  <input id="code" placeholder="Activation Code (उदा. Dnyaneshwari@2007)">
+  <!-- SAFE EXAMPLE -->
+  <div class="example">
+    <b>Example:</b><br>
+    Name : Abc<br>
+    Activation Code : Abc@1234
+  </div>
+
+  <input id="fullname" placeholder="Full Name">
+  <input id="code" placeholder="Activation Code">
   <button onclick="activateCourse()">Activate</button>
 
   <div id="msg" class="error"></div>
@@ -77,10 +89,7 @@ iframe{
 </div>
 
 <script>
-/*
-  📒 ADMISSION REGISTER
-  Full Name + Activation Code pair
-*/
+/* ADMISSION REGISTER */
 const students = {
   "DNYANESHWARI PRALHAD JADHAV": {
     code: "DNYANESHWARI@2007",
@@ -93,26 +102,26 @@ const students = {
 };
 
 function activateCourse(){
-  const nameInput = document.getElementById("fullname").value.trim().toUpperCase();
-  const codeInput = document.getElementById("code").value.trim().toUpperCase();
+  const nameInput =
+    document.getElementById("fullname").value.trim().toUpperCase();
+  const codeInput =
+    document.getElementById("code").value.trim().toUpperCase();
   const msg = document.getElementById("msg");
 
   msg.textContent = "";
   document.getElementById("csc").style.display="none";
 
-  // 🔍 Name exists?
   if(!students[nameInput]){
     msg.textContent = "❌ नाव सापडले नाही. कृपया नाव तपासा.";
     return;
   }
 
-  // 🔐 Code match?
   if(students[nameInput].code !== codeInput){
     msg.textContent = "❌ Activation Code चुकीचा आहे.";
     return;
   }
 
-  // ✅ BOTH MATCH → ACTIVATE
+  // ✅ BOTH MATCH
   document.getElementById("csc").style.display="block";
 }
 </script>
