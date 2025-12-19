@@ -42,6 +42,7 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
 .enroll{background:var(--primary);color:#fff}
 .activate{background:var(--green);color:#fff}
 .note{text-align:center;margin-top:30px;color:#444}
+a{text-decoration:none}
 </style>
 </head>
 
@@ -65,10 +66,12 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
         <span class="old">₹999</span>
       </p>
 
-      <button class="btn enroll" onclick="enroll('CSC',199)">
-        Enroll Now
-      </button>
+      <!-- CSC ENROLL -->
+      <a href="csc-enroll.html">
+        <button class="btn enroll">Enroll Now</button>
+      </a>
 
+      <!-- CSC ACTIVATE -->
       <button class="btn activate"
         onclick="activateAsk('CSC',199)">
         Activate Course
@@ -80,7 +83,8 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
       <h3>कॉम्प्युटर बेसिक कोर्स</h3>
       <p><span class="price">₹1499</span></p>
 
-      <button class="btn enroll" onclick="enroll('COMPUTER',1499)">
+      <button class="btn enroll"
+        onclick="alert('Computer Course Enroll page पुढे जोडता येईल')">
         Enroll Now
       </button>
 
@@ -95,7 +99,8 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
       <h3>मोबाईल रिपेअरिंग कोर्स</h3>
       <p><span class="price">₹799</span></p>
 
-      <button class="btn enroll" onclick="enroll('MOBILE',799)">
+      <button class="btn enroll"
+        onclick="alert('Mobile Course Enroll page पुढे जोडता येईल')">
         Enroll Now
       </button>
 
@@ -108,27 +113,11 @@ header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:20px
   </div>
 
   <div class="note">
-    ℹ️ Enroll न करता थेट Activate केल्यास Course सुरू होणार नाही
+    ℹ️ Enroll + Payment केल्याशिवाय Activation Code मिळणार नाही
   </div>
 </main>
 
 <script>
-// Enroll process (तुमची जुनी process इथेच राहील)
-function enroll(course, amount){
-  alert(
-    "कोर्स: " + course + "\n" +
-    "Fees: ₹" + amount + "\n\n" +
-    "Step 1: Details भरा\n" +
-    "Step 2: QR Code वर Payment करा\n" +
-    "Step 3: WhatsApp वर Screenshot पाठवा\n\n" +
-    "Payment verify झाल्यावर तुम्हाला Activation Code मिळेल."
-  );
-
-  // इथेच तुमची आधीची:
-  // form → QR → WhatsApp process call होते
-}
-
-// Activate विचारणा (तुमच्या exact wording प्रमाणे)
 function activateAsk(course, amount){
   const yes = confirm(
     course + " Course\n\n" +
@@ -137,10 +126,8 @@ function activateAsk(course, amount){
   );
 
   if(yes){
-    // हो दाबल्यावर
     window.location.href = "activate.html";
   }else{
-    // नाही दाबल्यावर
     alert(
       "सूचना:\n\n" +
       "तुम्ही आधी Enroll करणे आवश्यक आहे.\n" +
