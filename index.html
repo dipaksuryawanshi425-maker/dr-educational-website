@@ -4,15 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="o8dr3oT_3RqiFIA6PfKwQEqQLCzl8jhAU3PC_59jtyI" />
-
   <title>DR Govt Portal - तुमचे सर्व सरकारी दुवे</title>
+
   <style>
     :root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
     *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#111}
-    header{background:linear-gradient(90deg,#0f172a,#0b1220); color:#fff; padding:24px 20px}
+    body{font-family:Inter, system-ui;margin:0;background:var(--bg);color:#111}
+    header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:24px 20px}
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{width:48px;height:48px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
@@ -29,146 +28,115 @@
     .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer}
     .btn.open{background:var(--accent);color:#fff}
     .btn.copy{background:#f3f4f6}
-
     footer{padding:20px;text-align:center;color:var(--muted);font-size:14px;margin-top:40px;background:#fff;border-top:1px solid #e5e7eb}
     footer a{color:var(--accent);text-decoration:none;margin:0 8px}
-    footer a:hover{text-decoration:underline}
-
-    @media (max-width:520px){
-      header{padding:16px}
-      .controls{flex-direction:column}
-      input.search{width:100%}
-    }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="container">
-      <div class="brand">
-        <div class="logo">DR</div>
-        <div>
-          <h1>DR Govt Portal</h1>
-          <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
-        </div>
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">DR</div>
+      <div>
+        <h1>DR Govt Portal</h1>
+        <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
       </div>
-      <div class="controls">
-        <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhar, Ration" />
-        <select id="categoryFilter">
-          <option value="all">सर्व श्रेणी</option>
-        </select>
-      </div>
-
-      <!-- 🔹 Menu Button & Links -->
-      <button id="menuBtn" class="btn" style="background:#1f6feb;color:#fff;margin-top:10px;">☰ Menu</button>
-      <div id="menuList" style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
-        <a href="index.html" class="btn" style="background:#fff;">Home</a>
-        <a href="services.html" class="btn" style="background:#fff;">Service</a>
-        <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
-        <a href="learning.html" class="btn" style="background:#fff;">Learning</a>
-        <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
-        <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
-      </div>
-      <!-- 🔹 End Menu -->
     </div>
-  </header>
 
-  <main class="container">
-    <div id="grid" class="grid" aria-live="polite"></div>
-  </main>
+    <div class="controls">
+      <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhaar, Ration" />
+      <select id="categoryFilter">
+        <option value="all">सर्व श्रेणी</option>
+      </select>
+    </div>
 
-  <footer>
-    <p>
-      <a href="about.html">About</a> |
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="disclaimer.html">Disclaimer</a>
-    </p>
-    <p>© 2025 DR Govt Portal — ही साइट फक्त अधिकृत सरकारी दुवे पुरवते. कोणतीही वैयक्तिक माहिती येथे साठवली जात नाही.</p>
-  </footer>
+    <button id="menuBtn" class="btn" style="background:#1f6feb;color:#fff;margin-top:10px;">☰ Menu</button>
+    <div id="menuList" style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
+      <a href="index.html" class="btn" style="background:#fff;">Home</a>
+      <a href="services.html" class="btn" style="background:#fff;">Service</a>
+      <a href="learning.html" class="btn" style="background:#fff;">Learning</a>
+      <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
+      <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
+    </div>
+  </div>
+</header>
 
-  <script>
-    const services = [
-      {id:1, name:'PAN कार्ड (Income Tax portal)', desc:'PAN अर्ज/स्थिती तपासा', category:'पॅन/टॅक्स', url:'https://www.incometax.gov.in/iec/foportal'},
-      {id:2, name:'Aadhaar - UIDAI', desc:'आधार कार्ड माहिती व सेव्हिसेस', category:'आधार', url:'https://uidai.gov.in'},
-      {id:3, name:'Passport Seva', desc:'नवीन पासपोर्ट अर्ज व अपॉइंटमेंट', category:'पासपोर्ट', url:'https://www.passportindia.gov.in'},
-      {id:4, name:'EPFO', desc:'EPF पासबुक व सेव्हिसेस', category:'श्रम', url:'https://www.epfindia.gov.in'},
-      {id:5, name:'Ration Card - State Portals', desc:'रेशन कार्ड अर्ज (राज्यानुसार)', category:'रेशन', url:'https://ration.example.com'},
-      {id:6, name:'Photo Cropper (Online)', desc:'फोटो क्रॉप व एडिटिंग साधन', category:'उपयुक्त साधने', url:'https://www.photopea.com'},
-      {id:7, name:'Govt Services - Digital Seva', desc:'Digital Seva/CSC पोर्टल', category:'सेवा केंद्र', url:'https://digitalseva.csc.gov.in'}
-    ];
+<main class="container">
+  <div id="grid" class="grid"></div>
+</main>
 
-    const grid=document.getElementById('grid');
-    const search=document.getElementById('search');
-    const categoryFilter=document.getElementById('categoryFilter');
+<footer>
+  <p>
+    <a href="about.html">About</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="disclaimer.html">Disclaimer</a>
+  </p>
+  <p>© 2025 DR Govt Portal</p>
+</footer>
 
-    const categories=Array.from(new Set(services.map(s=>s.category)));
-    categories.forEach(cat=>{
-      const opt=document.createElement('option');
-      opt.value=cat;
-      opt.textContent=cat;
-      categoryFilter.appendChild(opt);
-    });
+<script>
+const services = [
+  {id:1,name:'PAN Card – NSDL',desc:'PAN Apply / Correction / Status',category:'पॅन/टॅक्स',url:'https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html'},
+  {id:2,name:'Aadhaar – UIDAI',desc:'Aadhaar services & update',category:'आधार',url:'https://uidai.gov.in'},
+  {id:3,name:'mAadhaar App',desc:'Official Aadhaar mobile app',category:'आधार',url:'https://play.google.com/store/apps/details?id=in.gov.uidai.mAadhaar'},
+  {id:4,name:'Aaple Sarkar',desc:'Maharashtra Government Services',category:'सेवा',url:'https://aaplesarkar.mahaonline.gov.in'},
+  {id:5,name:'MAHADBT Scholarship',desc:'Scholarship portal Maharashtra',category:'शिक्षण',url:'https://mahadbt.maharashtra.gov.in'},
+  {id:6,name:'MAHADBT Farmer',desc:'Farmer DBT schemes',category:'शेतकरी',url:'https://mahadbt.maharashtra.gov.in'},
+  {id:7,name:'Ration Card Maharashtra',desc:'Ration Card services',category:'रेशन',url:'https://rcms.mahafood.gov.in'},
+  {id:8,name:'India Post Tracking',desc:'Speed Post / RPAD Tracking',category:'पोस्ट',url:'https://www.indiapost.gov.in/_layouts/15/DOP.Portal.Tracking/TrackConsignment.aspx'},
+  {id:9,name:'I Love PDF',desc:'Compress / Merge PDF online',category:'उपयुक्त साधने',url:'https://www.ilovepdf.com/compress_pdf'},
+  {id:10,name:'OKen Scanner App',desc:'Document scanner app',category:'मोबाईल अ‍ॅप',url:'https://play.google.com/store/apps/details?id=com.okay.scanner'}
+];
 
-    function render(list){
-      grid.innerHTML='';
-      if(list.length===0){
-        grid.innerHTML='<div style="grid-column:1/-1;padding:20px;background:#fff;border-radius:10px;text-align:center;color:var(--muted)">कोणतीही सेवा सापडली नाही.</div>';
-        return;
-      }
-      list.forEach(s=>{
-        const card=document.createElement('div');
-        card.className='card';
-        card.innerHTML=`
-          <div>
-            <h3>${escapeHtml(s.name)}</h3>
-            <p>${escapeHtml(s.desc)}</p>
-          </div>
-          <div class="actions">
-            <button class="btn open" data-url="${escapeHtml(s.url)}">उघडा</button>
-            <button class="btn copy" data-url="${escapeHtml(s.url)}">कॉपी करा</button>
-          </div>`;
-        grid.appendChild(card);
-      });
-    }
+const grid=document.getElementById('grid');
+const search=document.getElementById('search');
+const categoryFilter=document.getElementById('categoryFilter');
 
-    function escapeHtml(str){return String(str).replace(/[&"'<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[m]))}
+const categories=[...new Set(services.map(s=>s.category))];
+categories.forEach(c=>{
+  const o=document.createElement('option');
+  o.value=c;o.textContent=c;categoryFilter.appendChild(o);
+});
 
-    render(services);
+function render(list){
+  grid.innerHTML='';
+  if(!list.length){
+    grid.innerHTML='<div style="grid-column:1/-1;background:#fff;padding:20px;border-radius:10px;text-align:center">सेवा सापडली नाही</div>';
+    return;
+  }
+  list.forEach(s=>{
+    const d=document.createElement('div');
+    d.className='card';
+    d.innerHTML=`<h3>${s.name}</h3><p>${s.desc}</p>
+    <div class="actions">
+      <button class="btn open" data-url="${s.url}">Open</button>
+      <button class="btn copy" data-url="${s.url}">Copy</button>
+    </div>`;
+    grid.appendChild(d);
+  });
+}
+render(services);
 
-    function filterAndRender(){
-      const q=search.value.trim().toLowerCase();
-      const cat=categoryFilter.value;
-      const filtered=services.filter(s=>{
-        const matchesQ=q===''||s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q)||s.category.toLowerCase().includes(q);
-        const matchesCat=cat==='all'||s.category===cat;
-        return matchesQ&&matchesCat;
-      });
-      render(filtered);
-    }
+function filter(){
+  const q=search.value.toLowerCase();
+  const c=categoryFilter.value;
+  render(services.filter(s=>
+    (c==='all'||s.category===c) &&
+    (s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q))
+  ));
+}
+search.oninput=filter;
+categoryFilter.onchange=filter;
 
-    search.addEventListener('input',filterAndRender);
-    categoryFilter.addEventListener('change',filterAndRender);
+document.body.onclick=e=>{
+  const o=e.target.closest('.btn.open');
+  if(o) window.open(o.dataset.url,'_blank');
+  const c=e.target.closest('.btn.copy');
+  if(c) navigator.clipboard.writeText(c.dataset.url);
+};
 
-    document.body.addEventListener('click',e=>{
-      const openBtn=e.target.closest('.btn.open');
-      if(openBtn){const url=openBtn.dataset.url;window.open(url,'_blank');return}
-      const copyBtn=e.target.closest('.btn.copy');
-      if(copyBtn){
-        const url=copyBtn.dataset.url;
-        navigator.clipboard.writeText(url).then(()=>{alert('लिंक कॉपी झाली!')}).catch(()=>{prompt('कॉपी करा (Ctrl+C):',url)});
-        return;
-      }
-    });
-
-    (function applyQuery(){
-      const params=new URLSearchParams(location.search);
-      const q=params.get('q');
-      if(q){search.value=q;filterAndRender();}
-    })();
-
-    // 🔹 Menu Toggle (3 JS Lines)
-    const menuBtn=document.getElementById('menuBtn');
-    const menuList=document.getElementById('menuList');
-    menuBtn.addEventListener('click',()=>menuList.style.display=menuList.style.display==='none'?'flex':'none');
-  </script>
+menuBtn.onclick=()=>menuList.style.display=menuList.style.display==='none'?'flex':'none';
+</script>
 </body>
-          </html>
+</html>
