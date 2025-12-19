@@ -6,13 +6,9 @@
 <title>Activate Course</title>
 
 <style>
-body{
-  font-family:system-ui;
-  background:#f3f4f6;
-  margin:0;
-}
+body{font-family:system-ui;background:#f3f4f6;margin:0}
 .box{
-  max-width:420px;
+  max-width:440px;
   margin:40px auto;
   background:#fff;
   padding:22px;
@@ -20,7 +16,7 @@ body{
   box-shadow:0 6px 16px rgba(0,0,0,.1);
   text-align:center;
 }
-input{
+input,select{
   width:100%;
   padding:12px;
   margin:10px 0;
@@ -48,16 +44,8 @@ iframe{
   border-radius:10px;
   border:none;
 }
-.success{
-  color:#16a34a;
-  font-weight:700;
-  margin-bottom:10px;
-}
-.error{
-  color:#dc2626;
-  font-weight:600;
-  margin-top:10px;
-}
+.success{color:#16a34a;font-weight:700;margin-bottom:10px}
+.error{color:#dc2626;font-weight:600;margin-top:10px}
 </style>
 </head>
 
@@ -65,25 +53,45 @@ iframe{
 
 <div class="box">
   <h2>🔑 Course Activate करा</h2>
-  <p>Full Name आणि Activation Code टाका</p>
 
   <input id="fullname" placeholder="Full Name">
+
+  <!-- COURSE SELECT -->
+  <select id="course">
+    <option value="">Course निवडा</option>
+    <option value="csc">CSC Course</option>
+    <option value="computer">Computer Course</option>
+    <option value="mobile">Mobile Course</option>
+  </select>
+
   <input id="code" placeholder="Activation Code">
   <button onclick="activateCourse()">Activate</button>
 
   <div id="msg" class="error"></div>
 
-  <!-- CSC COURSE -->
+  <!-- CSC CONTENT -->
   <div id="csc" class="course">
     <div class="success">✅ CSC Course Activated</div>
     <iframe src="https://www.youtube.com/embed/VIDEO_ID_CSC"></iframe>
+  </div>
+
+  <!-- COMPUTER CONTENT -->
+  <div id="computer" class="course">
+    <div class="success">✅ Computer Course Activated</div>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_COMPUTER"></iframe>
+  </div>
+
+  <!-- MOBILE CONTENT -->
+  <div id="mobile" class="course">
+    <div class="success">✅ Mobile Course Activated</div>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_MOBILE"></iframe>
   </div>
 </div>
 
 <script>
 /*
   📒 ADMISSION REGISTER
-  Full Name + Activation Code
+  ⚠️ ALL STUDENTS = CSC COURSE ONLY
 */
 const students = {
   "DNYANESHWARI PRALHAD JADHAV": {
@@ -93,30 +101,53 @@ const students = {
   "DIPAK KHANDU SURYAWANSHI": {
     code: "DIPAK@2005",
     course: "csc"
+  },
+  "AMIT KUMAR SENA": {
+    code: "AMIT@1234",
+    course: "csc"
   }
 };
 
+function hideAll(){
+  ["csc","computer","mobile"].forEach(id=>{
+    document.getElementById(id).style.display="none";
+  });
+}
+
 function activateCourse(){
-  const nameInput =
+  const name =
     document.getElementById("fullname").value.trim().toUpperCase();
-  const codeInput =
+  const code =
     document.getElementById("code").value.trim().toUpperCase();
-  const msg = document.getElementById("msg");
+  const course =
+    document.getElementById("course").value;
+  const msg =
+    document.getElementById("msg");
 
   msg.textContent = "";
-  document.getElementById("csc").style.display="none";
+  hideAll();
 
-  if(!students[nameInput]){
-    msg.textContent = "❌ नाव सापडले नाही. कृपया नाव तपासा.";
+  if(!name || !code || !course){
+    msg.textContent = "❌ सर्व माहिती भरा (Name, Course, Code)";
     return;
   }
 
-  if(students[nameInput].code !== codeInput){
+  if(!students[name]){
+    msg.textContent = "❌ नाव सापडले नाही.";
+    return;
+  }
+
+  if(students[name].code !== code){
     msg.textContent = "❌ Activation Code चुकीचा आहे.";
     return;
   }
 
-  // ✅ BOTH MATCH → ACTIVATE
+  if(students[name].course !== course){
+    msg.textContent = "❌ हा Activation Code फक्त CSC Course साठी आहे.";
+    return;
+  }
+
+  // ✅ ALL MATCH → CSC ONLY
   document.getElementById("csc").style.display="block";
 }
 </script>
