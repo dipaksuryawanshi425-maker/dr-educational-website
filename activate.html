@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activate Course | DR Govt Portal</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui, Arial;
+  background:#f3f4f6;
+}
+.box{
+  max-width:420px;
+  margin:40px auto;
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
+  text-align:center;
+}
+h2{margin-top:0}
+input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#1f6feb;
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+.note{
+  font-size:14px;
+  color:#555;
+  margin-top:12px;
+}
+.hidden{display:none}
+.course{
+  margin-top:20px;
+  text-align:left;
+}
+iframe{
+  width:100%;
+  height:315px;
+  border-radius:10px;
+  border:none;
+}
+.success{
+  color:#16a34a;
+  font-weight:700;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🔑 Course Activate करा</h2>
+  <p>Payment नंतर मिळालेला Activation Code टाका</p>
+
+  <input id="code" placeholder="Activation Code (उदा. DIPAKCSC01)">
+  <button onclick="activateCourse()">Activate</button>
+
+  <p class="note">
+    Activation Code मिळाला नसेल तर<br>
+    आधी Enroll + Payment करा.
+  </p>
+
+  <!-- CSC COURSE -->
+  <div id="csc" class="course hidden">
+    <p class="success">✅ CSC Course Activated</p>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_CSC"></iframe>
+  </div>
+
+  <!-- COMPUTER COURSE -->
+  <div id="computer" class="course hidden">
+    <p class="success">✅ Computer Course Activated</p>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_COMPUTER"></iframe>
+  </div>
+
+  <!-- MOBILE COURSE -->
+  <div id="mobile" class="course hidden">
+    <p class="success">✅ Mobile Course Activated</p>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID_MOBILE"></iframe>
+  </div>
+
+</div>
+
+<script>
+function activateCourse(){
+  const code = document.getElementById("code").value.trim().toUpperCase();
+
+  // सगळे course hide करा
+  document.getElementById("csc").classList.add("hidden");
+  document.getElementById("computer").classList.add("hidden");
+  document.getElementById("mobile").classList.add("hidden");
+
+  // Secret Activation Codes
+  if(code === "DIPAKCSC01"){
+    document.getElementById("csc").classList.remove("hidden");
+  }
+  else if(code === "DIPAKC02"){
+    document.getElementById("computer").classList.remove("hidden");
+  }
+  else if(code === "DIPAKM02"){
+    document.getElementById("mobile").classList.remove("hidden");
+  }
+  else{
+    alert("❌ Activation Code चुकीचा आहे. कृपया Payment verify करा.");
+  }
+}
+</script>
+
+</body>
+  </html>
