@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<title>Student Dashboard</title>
+</head>
+<body>
+
+<h2>Welcome <span id="student"></span></h2>
+
+<h3>CSC Course Lectures</h3>
+
+<iframe width="100%" height="315"
+src="https://www.youtube.com/embed/VIDEO_ID"
+allowfullscreen></iframe>
+
+<br><br>
+<button onclick="logout()">Logout</button>
+
+<script>
+if(localStorage.getItem("login") !== "yes"){
+  location.href = "login.html";
+}
+
+document.getElementById("student").innerText =
+  localStorage.getItem("student");
+
+function logout(){
+  localStorage.clear();
+  location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
