@@ -7,13 +7,15 @@
 <meta name="google-site-verification"
 content="o8dr3oT_3RqiFIA6PfKwQEqQLCzl8jhAU3PC_59jtyI" />
 
-<title>DR Govt Portal - तुमचे सर्व सरकारी दुवे</title>
+<title>DR Govt Portal</title>
 
 <style>
-:root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
+:root{--accent:#1f6feb;--bg:#f3f4f6}
 *{box-sizing:border-box}
-body{font-family:Inter,system-ui;margin:0;background:var(--bg);color:#111}
-
+body{
+  font-family:Inter,system-ui;
+  margin:0;background:var(--bg);color:#111
+}
 header{
   background:linear-gradient(90deg,#0f172a,#0b1220);
   color:#fff;padding:24px 20px
@@ -28,55 +30,17 @@ header{
 h1{margin:0;font-size:20px}
 p.lead{margin:6px 0 0;color:#cbd5e1}
 
-.controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-input.search{
-  padding:12px 14px;border-radius:10px;
-  border:1px solid #e5e7eb;min-width:280px
-}
-select{
-  padding:10px 12px;border-radius:10px;
-  border:1px solid #e5e7eb;background:#fff
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-  gap:14px;margin-top:20px
-}
-.card{
-  background:var(--card);padding:14px;border-radius:10px;
-  box-shadow:0 1px 3px rgba(2,6,23,0.06)
-}
-.card h3{margin:0;font-size:16px}
-.card p{margin:0;color:var(--muted);font-size:13px}
-.actions{margin-top:8px;display:flex;gap:8px}
-
-.btn{
-  padding:8px 10px;border-radius:8px;
-  border:0;cursor:pointer
-}
-.btn.open{background:var(--accent);color:#fff}
-.btn.copy{background:#f3f4f6}
-
-footer{
-  padding:20px;text-align:center;color:var(--muted);
-  font-size:14px;margin-top:40px;
-  background:#fff;border-top:1px solid #e5e7eb
-}
-footer a{color:var(--accent);text-decoration:none;margin:0 8px}
-
-/* 🔥 Courses Glow */
+/* 🔥 Glow Button */
 .course-btn{
-  padding:14px 28px;
-  font-size:18px;
-  font-weight:700;
+  padding:14px 30px;
+  font-size:18px;font-weight:700;
   color:#fff;
   background:linear-gradient(90deg,#1f6feb,#38bdf8);
   border:none;border-radius:999px;
   cursor:pointer;
   box-shadow:0 0 10px rgba(56,189,248,.8),
              0 0 20px rgba(56,189,248,.6);
-  animation:glow 1.8s infinite alternate
+  animation:glow 1.8s infinite alternate;
 }
 @keyframes glow{
   from{
@@ -87,6 +51,35 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
     box-shadow:0 0 16px rgba(56,189,248,1),
                0 0 32px rgba(56,189,248,.9)
   }
+}
+
+/* ✨ Glow Text */
+.glow-text{
+  font-size:20px;
+  font-weight:800;
+  color:#1f6feb;
+  text-shadow:
+    0 0 8px rgba(31,111,235,0.7),
+    0 0 16px rgba(31,111,235,0.5);
+  animation: glowPulse 2s infinite alternate;
+}
+@keyframes glowPulse{
+  from{
+    text-shadow:
+      0 0 6px rgba(31,111,235,0.6),
+      0 0 12px rgba(31,111,235,0.4);
+  }
+  to{
+    text-shadow:
+      0 0 14px rgba(31,111,235,1),
+      0 0 28px rgba(31,111,235,0.9);
+  }
+}
+
+footer{
+  padding:20px;text-align:center;
+  color:#6b7280;font-size:14px;
+  margin-top:40px;background:#fff
 }
 </style>
 </head>
@@ -99,113 +92,61 @@ footer a{color:var(--accent);text-decoration:none;margin:0 8px}
     <div class="logo">DR</div>
     <div>
       <h1>DR Govt Portal</h1>
-      <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
+      <p class="lead">सरकारी सेवा व प्रशिक्षण एकाच ठिकाणी</p>
     </div>
-  </div>
-
-  <div class="controls">
-    <input id="search" class="search"
-    placeholder="सेवा शोधा — उदा. PAN, Aadhaar, Ration">
-    <select id="categoryFilter">
-      <option value="all">सर्व श्रेणी</option>
-    </select>
-  </div>
-
-  <button id="menuBtn" class="btn"
-  style="background:#1f6feb;color:#fff;margin-top:10px;">
-  ☰ Menu</button>
-
-  <div id="menuList"
-  style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
-    <a href="index.html" class="btn" style="background:#fff;">Home</a>
-    <a href="services.html" class="btn" style="background:#fff;">Service</a>
-    <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
-    <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
-    <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
   </div>
 </div>
 </header>
 
-<!-- ⭐ OUR COURSES SECTION (NO AUTO SCROLL) -->
-<div class="container" style="text-align:center;">
-  <h2 style="
-    font-size:28px;font-weight:800;color:#1f6feb;
-    text-shadow:0 0 8px rgba(31,111,235,.6),
-                0 0 16px rgba(31,111,235,.4);
-    margin-bottom:15px;">
-    आमचे कोर्सेस 🖥️📱
-  </h2>
-
-  <a href="courses.html" style="text-decoration:none;">
-    <button class="course-btn">👉 आमचे कोर्सेस पाहा</button>
+<!-- 🔘 Services Button -->
+<div class="container" style="text-align:center;margin-top:25px;">
+  <a href="services.html">
+    <button class="course-btn">
+      👉 सरकारी कामाच्या वेबसाईट
+    </button>
   </a>
 </div>
 
-<main class="container">
-  <div id="grid" class="grid"></div>
-</main>
+<!-- 🔘 Courses Button -->
+<div class="container" style="text-align:center;margin-top:25px;">
+  <a href="courses.html">
+    <button class="course-btn">
+      👉 आमचे कोर्सेस
+    </button>
+  </a>
+</div>
+
+<!-- 🎥 CSC Demo -->
+<div class="container" style="text-align:center;margin-top:40px;">
+  <div class="glow-text">
+    👇 बेसिक CSC ऑनलाईन मोबाईल कोर्स डेमो व्हिडिओ
+  </div>
+
+  <div style="margin-top:18px;max-width:800px;margin:auto;">
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed/CSC_VIDEO_ID"
+      frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<!-- 🎥 Computer Demo -->
+<div class="container" style="text-align:center;margin-top:45px;">
+  <div class="glow-text">
+    👇 बेसिक कम्प्युटर कोर्स डेमो व्हिडिओ
+  </div>
+
+  <div style="margin-top:18px;max-width:800px;margin:auto;">
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed/COMPUTER_VIDEO_ID"
+      frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+</div>
 
 <footer>
-<p>
-  <a href="about.html">About</a> |
-  <a href="privacy.html">Privacy Policy</a> |
-  <a href="disclaimer.html">Disclaimer</a>
-</p>
 <p>© 2025 DR Govt Portal</p>
 </footer>
 
-<script>
-const services=[
-{name:'PAN Card – NSDL',desc:'PAN Apply / Status',
-category:'पॅन',url:'https://www.onlineservices.nsdl.com'},
-{name:'Aadhaar – UIDAI',desc:'Aadhaar Services',
-category:'आधार',url:'https://uidai.gov.in'},
-{name:'MAHADBT Scholarship',desc:'Scholarship Portal',
-category:'शिक्षण',url:'https://mahadbt.maharashtra.gov.in'}
-];
-
-const grid=document.getElementById("grid");
-const search=document.getElementById("search");
-const filter=document.getElementById("categoryFilter");
-
-[...new Set(services.map(s=>s.category))]
-.forEach(c=>{
-  const o=document.createElement("option");
-  o.value=c;o.textContent=c;filter.appendChild(o);
-});
-
-function render(list){
-  grid.innerHTML="";
-  list.forEach(s=>{
-    const d=document.createElement("div");
-    d.className="card";
-    d.innerHTML=`
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-      <div class="actions">
-        <button class="btn open"
-        onclick="window.open('${s.url}','_blank')">
-        Open</button>
-      </div>`;
-    grid.appendChild(d);
-  });
-}
-render(services);
-
-search.oninput=filter.onchange=function(){
-  const q=search.value.toLowerCase();
-  const c=filter.value;
-  render(services.filter(s=>
-    (c==='all'||s.category===c) &&
-    (s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q))
-  ));
-};
-
-menuBtn.onclick=()=>{
-  menuList.style.display=
-  menuList.style.display==="none"?"flex":"none";
-};
-</script>
-
 </body>
-    </html>
+</html>
