@@ -1,149 +1,211 @@
 <!doctype html>
 <html lang="mr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="google-site-verification" content="o8dr3oT_3RqiFIA6PfKwQEqQLCzl8jhAU3PC_59jtyI" />
-  <title>DR Govt Portal - तुमचे सर्व सरकारी दुवे</title>
+<meta name="google-site-verification"
+content="o8dr3oT_3RqiFIA6PfKwQEqQLCzl8jhAU3PC_59jtyI" />
 
-  <style>
-    :root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui;margin:0;background:var(--bg);color:#111}
-    header{background:linear-gradient(90deg,#0f172a,#0b1220);color:#fff;padding:24px 20px}
-    .container{max-width:1100px;margin:0 auto;padding:20px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
-    h1{margin:0;font-size:20px}
-    p.lead{margin:6px 0 0;color:#cbd5e1}
-    .controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-    input.search{padding:12px 14px;border-radius:10px;border:1px solid #e5e7eb;min-width:280px}
-    select{padding:10px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#fff}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
-    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 3px rgba(2,6,23,0.06);display:flex;flex-direction:column;gap:8px}
-    .card h3{margin:0;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:13px}
-    .card .actions{margin-top:8px;display:flex;gap:8px}
-    .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer}
-    .btn.open{background:var(--accent);color:#fff}
-    .btn.copy{background:#f3f4f6}
-    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px;margin-top:40px;background:#fff;border-top:1px solid #e5e7eb}
-    footer a{color:var(--accent);text-decoration:none;margin:0 8px}
-  </style>
+<title>DR Govt Portal - तुमचे सर्व सरकारी दुवे</title>
+
+<style>
+:root{--accent:#1f6feb;--muted:#6b7280;--card:#ffffff;--bg:#f3f4f6}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui;margin:0;background:var(--bg);color:#111}
+
+header{
+  background:linear-gradient(90deg,#0f172a,#0b1220);
+  color:#fff;padding:24px 20px
+}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:48px;height:48px;background:white;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-weight:700
+}
+h1{margin:0;font-size:20px}
+p.lead{margin:6px 0 0;color:#cbd5e1}
+
+.controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+input.search{
+  padding:12px 14px;border-radius:10px;
+  border:1px solid #e5e7eb;min-width:280px
+}
+select{
+  padding:10px 12px;border-radius:10px;
+  border:1px solid #e5e7eb;background:#fff
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:14px;margin-top:20px
+}
+.card{
+  background:var(--card);padding:14px;border-radius:10px;
+  box-shadow:0 1px 3px rgba(2,6,23,0.06)
+}
+.card h3{margin:0;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.actions{margin-top:8px;display:flex;gap:8px}
+
+.btn{
+  padding:8px 10px;border-radius:8px;
+  border:0;cursor:pointer
+}
+.btn.open{background:var(--accent);color:#fff}
+.btn.copy{background:#f3f4f6}
+
+footer{
+  padding:20px;text-align:center;color:var(--muted);
+  font-size:14px;margin-top:40px;
+  background:#fff;border-top:1px solid #e5e7eb
+}
+footer a{color:var(--accent);text-decoration:none;margin:0 8px}
+
+/* 🔥 Courses Glow */
+.course-btn{
+  padding:14px 28px;
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(90deg,#1f6feb,#38bdf8);
+  border:none;border-radius:999px;
+  cursor:pointer;
+  box-shadow:0 0 10px rgba(56,189,248,.8),
+             0 0 20px rgba(56,189,248,.6);
+  animation:glow 1.8s infinite alternate
+}
+@keyframes glow{
+  from{
+    box-shadow:0 0 8px rgba(56,189,248,.6),
+               0 0 16px rgba(56,189,248,.4)
+  }
+  to{
+    box-shadow:0 0 16px rgba(56,189,248,1),
+               0 0 32px rgba(56,189,248,.9)
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="container">
-    <div class="brand">
-      <div class="logo">DR</div>
-      <div>
-        <h1>DR Govt Portal</h1>
-        <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
-      </div>
-    </div>
-
-    <div class="controls">
-      <input id="search" class="search" placeholder="सेवा शोधा — उदा. PAN, Aadhaar, Ration" />
-      <select id="categoryFilter">
-        <option value="all">सर्व श्रेणी</option>
-      </select>
-    </div>
-
-    <!-- MENU -->
-    <button id="menuBtn" class="btn" style="background:#1f6feb;color:#fff;margin-top:10px;">☰ Menu</button>
-    <div id="menuList" style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
-      <a href="index.html" class="btn" style="background:#fff;">Home</a>
-      <a href="services.html" class="btn" style="background:#fff;">Service</a>
-      <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
-
-      <!-- ✅ LOGIN LINK -->
-      <a href="login.html" class="btn" style="background:#fff;">Student Login</a>
-
-      <a href="learning.html" class="btn" style="background:#fff;">Learning</a>
-      <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
-      <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
+<div class="container">
+  <div class="brand">
+    <div class="logo">DR</div>
+    <div>
+      <h1>DR Govt Portal</h1>
+      <p class="lead">अनेक सरकारी व आवश्यक ऑनलाईन सेवा — एकाच ठिकाणी.</p>
     </div>
   </div>
+
+  <div class="controls">
+    <input id="search" class="search"
+    placeholder="सेवा शोधा — उदा. PAN, Aadhaar, Ration">
+    <select id="categoryFilter">
+      <option value="all">सर्व श्रेणी</option>
+    </select>
+  </div>
+
+  <button id="menuBtn" class="btn"
+  style="background:#1f6feb;color:#fff;margin-top:10px;">
+  ☰ Menu</button>
+
+  <div id="menuList"
+  style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
+    <a href="index.html" class="btn" style="background:#fff;">Home</a>
+    <a href="services.html" class="btn" style="background:#fff;">Service</a>
+    <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
+    <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
+    <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
+  </div>
+</div>
 </header>
+
+<!-- ⭐ OUR COURSES SECTION (NO AUTO SCROLL) -->
+<div class="container" style="text-align:center;">
+  <h2 style="
+    font-size:28px;font-weight:800;color:#1f6feb;
+    text-shadow:0 0 8px rgba(31,111,235,.6),
+                0 0 16px rgba(31,111,235,.4);
+    margin-bottom:15px;">
+    आमचे कोर्सेस 🖥️📱
+  </h2>
+
+  <a href="courses.html" style="text-decoration:none;">
+    <button class="course-btn">👉 आमचे कोर्सेस पाहा</button>
+  </a>
+</div>
 
 <main class="container">
   <div id="grid" class="grid"></div>
 </main>
 
 <footer>
-  <p>
-    <a href="about.html">About</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="disclaimer.html">Disclaimer</a>
-  </p>
-  <p>© 2025 DR Govt Portal</p>
+<p>
+  <a href="about.html">About</a> |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="disclaimer.html">Disclaimer</a>
+</p>
+<p>© 2025 DR Govt Portal</p>
 </footer>
 
 <script>
-const services = [
-  {id:1,name:'PAN Card – NSDL',desc:'PAN Apply / Correction / Status',category:'पॅन/टॅक्स',url:'https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html'},
-  {id:2,name:'Aadhaar – UIDAI',desc:'Aadhaar services & update',category:'आधार',url:'https://uidai.gov.in'},
-  {id:3,name:'mAadhaar App',desc:'Official Aadhaar mobile app',category:'आधार',url:'https://play.google.com/store/apps/details?id=in.gov.uidai.mAadhaar'},
-  {id:4,name:'Aaple Sarkar',desc:'Maharashtra Government Services',category:'सेवा',url:'https://aaplesarkar.mahaonline.gov.in'},
-  {id:5,name:'MAHADBT Scholarship',desc:'Scholarship portal Maharashtra',category:'शिक्षण',url:'https://mahadbt.maharashtra.gov.in'},
-  {id:6,name:'MAHADBT Farmer',desc:'Farmer DBT schemes',category:'शेतकरी',url:'https://mahadbt.maharashtra.gov.in'},
-  {id:7,name:'Ration Card Maharashtra',desc:'Ration Card services',category:'रेशन',url:'https://rcms.mahafood.gov.in'},
-  {id:8,name:'India Post Tracking',desc:'Speed Post / RPAD Tracking',category:'पोस्ट',url:'https://www.indiapost.gov.in/_layouts/15/DOP.Portal.Tracking/TrackConsignment.aspx'},
-  {id:9,name:'I Love PDF',desc:'Compress / Merge PDF online',category:'उपयुक्त साधने',url:'https://www.ilovepdf.com/compress_pdf'},
-  {id:10,name:'OKen Scanner App',desc:'Document scanner app',category:'मोबाईल अ‍ॅप',url:'https://play.google.com/store/apps/details?id=com.okay.scanner'}
+const services=[
+{name:'PAN Card – NSDL',desc:'PAN Apply / Status',
+category:'पॅन',url:'https://www.onlineservices.nsdl.com'},
+{name:'Aadhaar – UIDAI',desc:'Aadhaar Services',
+category:'आधार',url:'https://uidai.gov.in'},
+{name:'MAHADBT Scholarship',desc:'Scholarship Portal',
+category:'शिक्षण',url:'https://mahadbt.maharashtra.gov.in'}
 ];
 
-const grid=document.getElementById('grid');
-const search=document.getElementById('search');
-const categoryFilter=document.getElementById('categoryFilter');
+const grid=document.getElementById("grid");
+const search=document.getElementById("search");
+const filter=document.getElementById("categoryFilter");
 
-[...new Set(services.map(s=>s.category))].forEach(c=>{
-  const o=document.createElement('option');
-  o.value=c;o.textContent=c;categoryFilter.appendChild(o);
+[...new Set(services.map(s=>s.category))]
+.forEach(c=>{
+  const o=document.createElement("option");
+  o.value=c;o.textContent=c;filter.appendChild(o);
 });
 
 function render(list){
-  grid.innerHTML='';
-  if(!list.length){
-    grid.innerHTML='<div style="grid-column:1/-1;background:#fff;padding:20px;border-radius:10px;text-align:center">सेवा सापडली नाही</div>';
-    return;
-  }
+  grid.innerHTML="";
   list.forEach(s=>{
-    const d=document.createElement('div');
-    d.className='card';
-    d.innerHTML=`<h3>${s.name}</h3><p>${s.desc}</p>
-    <div class="actions">
-      <button class="btn open" data-url="${s.url}">Open</button>
-      <button class="btn copy" data-url="${s.url}">Copy</button>
-    </div>`;
+    const d=document.createElement("div");
+    d.className="card";
+    d.innerHTML=`
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+      <div class="actions">
+        <button class="btn open"
+        onclick="window.open('${s.url}','_blank')">
+        Open</button>
+      </div>`;
     grid.appendChild(d);
   });
 }
 render(services);
 
-function filter(){
+search.oninput=filter.onchange=function(){
   const q=search.value.toLowerCase();
-  const c=categoryFilter.value;
+  const c=filter.value;
   render(services.filter(s=>
     (c==='all'||s.category===c) &&
     (s.name.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q))
   ));
-}
-search.oninput=filter;
-categoryFilter.onchange=filter;
-
-document.body.onclick=e=>{
-  const o=e.target.closest('.btn.open');
-  if(o) window.open(o.dataset.url,'_blank');
-  const c=e.target.closest('.btn.copy');
-  if(c) navigator.clipboard.writeText(c.dataset.url);
 };
 
-menuBtn.onclick=()=>menuList.style.display=menuList.style.display==='none'?'flex':'none';
+menuBtn.onclick=()=>{
+  menuList.style.display=
+  menuList.style.display==="none"?"flex":"none";
+};
 </script>
 
 </body>
-  </html>
+    </html>
