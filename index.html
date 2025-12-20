@@ -34,6 +34,7 @@
 </head>
 
 <body>
+
 <header>
   <div class="container">
     <div class="brand">
@@ -51,10 +52,15 @@
       </select>
     </div>
 
+    <!-- MENU -->
     <button id="menuBtn" class="btn" style="background:#1f6feb;color:#fff;margin-top:10px;">☰ Menu</button>
     <div id="menuList" style="display:none;flex-direction:column;gap:6px;margin-top:10px;">
       <a href="index.html" class="btn" style="background:#fff;">Home</a>
       <a href="services.html" class="btn" style="background:#fff;">Service</a>
+
+      <!-- ✅ Courses back -->
+      <a href="courses.html" class="btn" style="background:#fff;">Courses</a>
+
       <a href="learning.html" class="btn" style="background:#fff;">Learning</a>
       <a href="privacy.html" class="btn" style="background:#fff;">Privacy</a>
       <a href="disclaimer.html" class="btn" style="background:#fff;">Disclaimer</a>
@@ -93,8 +99,7 @@ const grid=document.getElementById('grid');
 const search=document.getElementById('search');
 const categoryFilter=document.getElementById('categoryFilter');
 
-const categories=[...new Set(services.map(s=>s.category))];
-categories.forEach(c=>{
+[...new Set(services.map(s=>s.category))].forEach(c=>{
   const o=document.createElement('option');
   o.value=c;o.textContent=c;categoryFilter.appendChild(o);
 });
@@ -138,5 +143,6 @@ document.body.onclick=e=>{
 
 menuBtn.onclick=()=>menuList.style.display=menuList.style.display==='none'?'flex':'none';
 </script>
+
 </body>
-</html>
+                                                                             </html>
