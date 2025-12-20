@@ -7,14 +7,20 @@
 <title>Dr Online Academy</title>
 
 <style>
-:root{--accent:#1f6feb;--bg:#f3f4f6}
+:root{
+  --accent:#2563eb;
+  --accent-light:#38bdf8;
+  --bg:#f3f4f6;
+}
 *{box-sizing:border-box}
 body{
-  font-family:Inter,system-ui;
-  margin:0;background:var(--bg);color:#111
+  font-family:Inter,system-ui,Arial;
+  margin:0;
+  background:var(--bg);
+  color:#111;
 }
 
-/* 🔥 HEADER */
+/* ===== HEADER ===== */
 header{
   background:
     linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
@@ -22,61 +28,67 @@ header{
   background-size:cover;
   background-position:center;
   color:#fff;
-  padding:50px 20px;
+  padding:55px 20px;
 }
 
-.container{max-width:1100px;margin:0 auto;padding:20px}
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:20px;
+  text-align:center;
+}
 
-h1{margin:0;font-size:28px}
-p.lead{margin:8px 0 0;color:#e5e7eb;font-size:16px}
+header h1{
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:0.5px;
+  margin:0 0 6px;
+}
 
-/* 🔥 Glow Button */
+header .lead{
+  font-size:15px;
+  font-weight:500;
+  opacity:0.95;
+}
+
+/* ===== GLOW BUTTON (PROFESSIONAL) ===== */
 .course-btn{
   padding:14px 30px;
-  font-size:18px;font-weight:700;
+  font-size:17px;
+  font-weight:700;
   color:#fff;
-  background:linear-gradient(90deg,#1f6feb,#38bdf8);
-  border:none;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-light));
+  border:none;
+  border-radius:999px;
   cursor:pointer;
-  box-shadow:0 0 10px rgba(56,189,248,.8),
-             0 0 20px rgba(56,189,248,.6);
-  animation:glow 1.8s infinite alternate;
+  box-shadow:
+    0 6px 18px rgba(37,99,235,0.35),
+    0 0 12px rgba(56,189,248,0.6);
+  transition:transform .2s ease;
 }
-@keyframes glow{
-  from{
-    box-shadow:0 0 8px rgba(56,189,248,.6),
-               0 0 16px rgba(56,189,248,.4)
-  }
-  to{
-    box-shadow:0 0 16px rgba(56,189,248,1),
-               0 0 32px rgba(56,189,248,.9)
-  }
+.course-btn:hover{
+  transform:translateY(-2px);
 }
 
-/* ✨ Glow Text */
+/* ===== GLOW TEXT (SOFT & CLEAN) ===== */
 .glow-text{
-  font-size:20px;
-  font-weight:800;
-  color:#1f6feb;
+  font-size:19px;
+  font-weight:700;
+  color:var(--accent);
   text-shadow:
-    0 0 8px rgba(31,111,235,0.7),
-    0 0 16px rgba(31,111,235,0.5);
-  animation: glowPulse 2s infinite alternate;
-}
-@keyframes glowPulse{
-  from{
-    text-shadow:
-      0 0 6px rgba(31,111,235,0.6),
-      0 0 12px rgba(31,111,235,0.4);
-  }
-  to{
-    text-shadow:
-      0 0 14px rgba(31,111,235,1),
-      0 0 28px rgba(31,111,235,0.9);
-  }
+    0 0 6px rgba(37,99,235,0.5),
+    0 0 12px rgba(56,189,248,0.35);
 }
 
-/* 🔻 FOOTER */
+/* ===== VIDEO STYLE ===== */
+iframe{
+  width:100%;
+  height:315px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== FOOTER (DO NOT CHANGE BLACK STRIP) ===== */
 .site-footer{
   background:#0f172a;
   color:#e5e7eb;
@@ -113,7 +125,6 @@ p.lead{margin:8px 0 0;color:#e5e7eb;font-size:16px}
   border-radius:999px;
   text-decoration:none;
   font-weight:700;
-  box-shadow:0 0 10px rgba(37,211,102,0.8);
 }
 .instagram-btn{
   background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
@@ -122,7 +133,6 @@ p.lead{margin:8px 0 0;color:#e5e7eb;font-size:16px}
   border-radius:999px;
   text-decoration:none;
   font-weight:700;
-  box-shadow:0 0 10px rgba(221,42,123,0.7);
 }
 .footer-copy{
   font-size:14px;
@@ -134,47 +144,49 @@ p.lead{margin:8px 0 0;color:#e5e7eb;font-size:16px}
 <body>
 
 <header>
-  <div class="container" style="text-align:center;">
+  <div class="container">
     <h1>Dr Online Academy</h1>
     <p class="lead">Online Courses | CSC | Computer Training</p>
   </div>
 </header>
 
-<!-- 🔘 Services Button -->
-<div class="container" style="text-align:center;margin-top:30px;">
+<!-- 🔘 SERVICES BUTTON -->
+<div class="container" style="margin-top:30px;">
   <a href="services.html">
     <button class="course-btn">👉 सरकारी कामाच्या वेबसाईट</button>
   </a>
 </div>
 
-<!-- 🔘 Courses Button -->
-<div class="container" style="text-align:center;margin-top:25px;">
+<!-- 🔘 COURSES BUTTON -->
+<div class="container" style="margin-top:25px;">
   <a href="courses.html">
     <button class="course-btn">👉 आमचे कोर्सेस</button>
   </a>
 </div>
 
-<!-- 🎥 CSC Demo -->
-<div class="container" style="text-align:center;margin-top:45px;">
+<!-- 🎥 CSC DEMO -->
+<div class="container" style="margin-top:45px;">
   <div class="glow-text">
     👇 बेसिक CSC ऑनलाईन मोबाईल कोर्स डेमो व्हिडिओ
   </div>
   <div style="margin-top:18px;max-width:800px;margin:auto;">
-    <iframe width="100%" height="315"
+    <iframe
       src="https://www.youtube.com/embed/CSC_VIDEO_ID"
-      frameborder="0" allowfullscreen></iframe>
+      frameborder="0"
+      allowfullscreen></iframe>
   </div>
 </div>
 
-<!-- 🎥 Computer Demo -->
-<div class="container" style="text-align:center;margin-top:45px;">
+<!-- 🎥 COMPUTER DEMO -->
+<div class="container" style="margin-top:45px;">
   <div class="glow-text">
     👇 बेसिक कम्प्युटर कोर्स डेमो व्हिडिओ
   </div>
   <div style="margin-top:18px;max-width:800px;margin:auto;">
-    <iframe width="100%" height="315"
+    <iframe
       src="https://www.youtube.com/embed/COMPUTER_VIDEO_ID"
-      frameborder="0" allowfullscreen></iframe>
+      frameborder="0"
+      allowfullscreen></iframe>
   </div>
 </div>
 
