@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<title>Student Login</title>
+</head>
+<body>
+
+<h2>Student Login</h2>
+
+<input id="name" placeholder="Full Name"><br><br>
+<input id="code" placeholder="Activation Code"><br><br>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<script>
+// ✅ STUDENT DATABASE (Manual – तुम्ही edit कराल)
+const students = {
+  "DNYANESHWARI PRALHAD JADHAV": "DNYANESHWARI@2007",
+  "DIPAK KHANDU SURYAWANSHI": "DIPAK@2005"
+};
+
+function login(){
+  const name = document.getElementById("name").value.trim().toUpperCase();
+  const code = document.getElementById("code").value.trim();
+
+  if(students[name] && students[name] === code){
+    localStorage.setItem("login", "yes");
+    localStorage.setItem("student", name);
+    location.href = "dashboard.html";
+  } else {
+    document.getElementById("msg").innerText =
+      "❌ Name किंवा Activation Code चुकीचा आहे";
+  }
+}
+</script>
+
+</body>
+</html>
