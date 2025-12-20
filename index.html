@@ -4,10 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="google-site-verification"
-content="o8dr3oT_3RqiFIA6PfKwQEqQLCzl8jhAU3PC_59jtyI" />
-
-<title>DR Govt Portal</title>
+<title>Dr Online Academy</title>
 
 <style>
 :root{--accent:#1f6feb;--bg:#f3f4f6}
@@ -16,19 +13,22 @@ body{
   font-family:Inter,system-ui;
   margin:0;background:var(--bg);color:#111
 }
+
+/* 🔥 HEADER */
 header{
-  background:linear-gradient(90deg,#0f172a,#0b1220);
-  color:#fff;padding:24px 20px
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("header-bg.jpg");
+  background-size:cover;
+  background-position:center;
+  color:#fff;
+  padding:50px 20px;
 }
+
 .container{max-width:1100px;margin:0 auto;padding:20px}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:48px;height:48px;background:white;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--accent);font-weight:700
-}
-h1{margin:0;font-size:20px}
-p.lead{margin:6px 0 0;color:#cbd5e1}
+
+h1{margin:0;font-size:28px}
+p.lead{margin:8px 0 0;color:#e5e7eb;font-size:16px}
 
 /* 🔥 Glow Button */
 .course-btn{
@@ -76,10 +76,57 @@ p.lead{margin:6px 0 0;color:#cbd5e1}
   }
 }
 
-footer{
-  padding:20px;text-align:center;
-  color:#6b7280;font-size:14px;
-  margin-top:40px;background:#fff
+/* 🔻 FOOTER */
+.site-footer{
+  background:#0f172a;
+  color:#e5e7eb;
+  text-align:center;
+  padding:30px 15px;
+  margin-top:50px;
+}
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+.footer-links a{
+  color:#e5e7eb;
+  text-decoration:none;
+  font-weight:600;
+}
+.footer-links a:hover{
+  color:#38bdf8;
+  text-decoration:underline;
+}
+.footer-social{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+.whatsapp-btn{
+  background:#25D366;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 0 10px rgba(37,211,102,0.8);
+}
+.instagram-btn{
+  background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 0 10px rgba(221,42,123,0.7);
+}
+.footer-copy{
+  font-size:14px;
+  color:#9ca3af;
 }
 </style>
 </head>
@@ -87,46 +134,35 @@ footer{
 <body>
 
 <header>
-<div class="container">
-  <div class="brand">
-    <div class="logo">DR</div>
-    <div>
-      <h1>DR Govt Portal</h1>
-      <p class="lead">सरकारी सेवा व प्रशिक्षण एकाच ठिकाणी</p>
-    </div>
+  <div class="container" style="text-align:center;">
+    <h1>Dr Online Academy</h1>
+    <p class="lead">Online Courses | CSC | Computer Training</p>
   </div>
-</div>
 </header>
 
 <!-- 🔘 Services Button -->
-<div class="container" style="text-align:center;margin-top:25px;">
+<div class="container" style="text-align:center;margin-top:30px;">
   <a href="services.html">
-    <button class="course-btn">
-      👉 सरकारी कामाच्या वेबसाईट
-    </button>
+    <button class="course-btn">👉 सरकारी कामाच्या वेबसाईट</button>
   </a>
 </div>
 
 <!-- 🔘 Courses Button -->
 <div class="container" style="text-align:center;margin-top:25px;">
   <a href="courses.html">
-    <button class="course-btn">
-      👉 आमचे कोर्सेस
-    </button>
+    <button class="course-btn">👉 आमचे कोर्सेस</button>
   </a>
 </div>
 
 <!-- 🎥 CSC Demo -->
-<div class="container" style="text-align:center;margin-top:40px;">
+<div class="container" style="text-align:center;margin-top:45px;">
   <div class="glow-text">
     👇 बेसिक CSC ऑनलाईन मोबाईल कोर्स डेमो व्हिडिओ
   </div>
-
   <div style="margin-top:18px;max-width:800px;margin:auto;">
     <iframe width="100%" height="315"
       src="https://www.youtube.com/embed/CSC_VIDEO_ID"
-      frameborder="0" allowfullscreen>
-    </iframe>
+      frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
@@ -135,18 +171,35 @@ footer{
   <div class="glow-text">
     👇 बेसिक कम्प्युटर कोर्स डेमो व्हिडिओ
   </div>
-
   <div style="margin-top:18px;max-width:800px;margin:auto;">
     <iframe width="100%" height="315"
       src="https://www.youtube.com/embed/COMPUTER_VIDEO_ID"
-      frameborder="0" allowfullscreen>
-    </iframe>
+      frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
-<footer>
-<p>© 2025 DR Govt Portal</p>
+<!-- 🔻 FOOTER -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <div class="footer-social">
+    <a href="https://wa.me/919226747818" target="_blank" class="whatsapp-btn">
+      💬 WhatsApp
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" class="instagram-btn">
+      📸 Instagram
+    </a>
+  </div>
+
+  <p class="footer-copy">
+    © 2025 Dr Online Academy. All Rights Reserved.
+  </p>
 </footer>
 
 </body>
-</html>
+  </html>
