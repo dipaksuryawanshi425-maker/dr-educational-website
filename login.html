@@ -7,30 +7,25 @@
 
 <style>
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial;
   background:#f3f4f6;
   margin:0;
 }
-.login-box{
+.box{
   max-width:400px;
   margin:90px auto;
-  background:#ffffff;
+  background:#fff;
   padding:25px;
   border-radius:12px;
   box-shadow:0 10px 25px rgba(0,0,0,0.12);
 }
-.login-box h2{
-  text-align:center;
-  margin-bottom:20px;
-  color:#1f2937;
-}
+h2{text-align:center}
 input{
   width:100%;
   padding:12px;
   margin-top:12px;
   border-radius:8px;
   border:1px solid #d1d5db;
-  font-size:15px;
 }
 button{
   width:100%;
@@ -42,71 +37,50 @@ button{
   color:#fff;
   font-size:16px;
   font-weight:700;
-  cursor:pointer;
-}
-button:hover{
-  background:#1d4ed8;
 }
 .msg{
-  margin-top:15px;
+  margin-top:12px;
   text-align:center;
-  font-size:14px;
   color:red;
-}
-.note{
-  margin-top:15px;
-  font-size:13px;
-  color:#6b7280;
-  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="login-box">
+<div class="box">
   <h2>Student Login</h2>
 
-  <input id="name" type="text" placeholder="Full Name">
-  <input id="code" type="text" placeholder="Activation Code">
+  <input id="name" placeholder="Full Name">
+  <input id="code" placeholder="Activation Code">
 
   <button onclick="login()">Login</button>
-
   <div id="msg" class="msg"></div>
-
-  <div class="note">
-    Activation code case-sensitive आहे.<br>
-    (Example: SATYAM@2007)
-  </div>
 </div>
 
 <script>
-/* ===== STUDENT ACTIVATION DATA ===== */
 const students = {
-  "DNYANESHWARI PRALHAD JADHAV":"DNYANESHWARI@2007",
+  "SATYAM BHAGINATH YADAV":"SATYAM@2007",
   "DIPAK KHANDU SURYAWANSHI":"DIPAK@2005",
-  "SATYAM BHAGINATH YADAV":"SATYAM@2007"
+  "DNYANESHWARI PRALHAD JADHAV":"DNYANESHWARI@2007"
 };
 
-/* ===== LOGIN FUNCTION ===== */
 function login(){
-  const nameInput = document.getElementById("name").value.trim();
-  const codeInput = document.getElementById("code").value.trim();
+  const name = document.getElementById("name").value.trim().toUpperCase();
+  const code = document.getElementById("code").value.trim();
   const msg = document.getElementById("msg");
 
-  if(nameInput === "" || codeInput === ""){
-    msg.innerText = "❌ कृपया नाव आणि Activation Code भरा";
+  if(!name || !code){
+    msg.innerText = "❌ नाव आणि Activation Code भरा";
     return;
   }
 
-  const name = nameInput.toUpperCase();
-
-  if(students[name] && students[name] === codeInput){
+  if(students[name] === code){
     localStorage.setItem("login","yes");
     localStorage.setItem("student",name);
-    window.location.href = "dashboard.html";
+    window.location.href = "activate.html";
   }else{
-    msg.innerText = "❌ नाव किंवा Activation Code चुकीचा आहे";
+    msg.innerText = "❌ Login detail चुकीची आहे";
   }
 }
 </script>
