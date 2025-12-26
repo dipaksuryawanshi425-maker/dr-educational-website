@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services | Dr Online Academy</title>
+
+<style>
+:root{--accent:#2563eb;--bg:#f3f4f6}
+*{box-sizing:border-box}
+body{
+  font-family:Inter,system-ui,Arial;
+  margin:0;
+  background:var(--bg);
+  color:#111;
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#020617);
+  color:#fff;
+  padding:35px 20px;
+}
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:20px;
+}
+header h1{
+  margin:0;
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+}
+header p{
+  text-align:center;
+  margin-top:8px;
+  font-size:15px;
+  opacity:.95;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+.service-card{
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+.service-card h3{
+  margin:0 0 8px;
+  color:var(--accent);
+}
+.service-card p{
+  font-size:14px;
+  color:#374151;
+}
+.service-card a{
+  display:inline-block;
+  margin:5px 5px 0 0;
+  padding:10px 16px;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:600;
+  font-size:14px;
+}
+.site-footer{
+  background:#0f172a;
+  color:#9ca3af;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1>Services</h1>
+    <p>PAN, Aadhaar, NPCI व Income Tax अधिकृत वेबसाईट्स</p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="services-grid">
+
+    <div class="service-card">
+      <h3>PAN Card (NSDL)</h3>
+      <p>नवीन PAN, correction, reprint.</p>
+      <a href="https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html" target="_blank">
+        PAN NSDL
+      </a>
+    </div>
+
+    <div class="service-card">
+      <h3>Income Tax Portal</h3>
+      <p>ITR filing, tax payment, refund status.</p>
+      <a href="https://www.incometax.gov.in/iec/foportal" target="_blank">
+        Income Tax
+      </a>
+    </div>
+
+    <div class="service-card">
+      <h3>Aadhaar Card (UIDAI)</h3>
+      <p>Aadhaar update, download, status.</p>
+      <a href="https://uidai.gov.in/" target="_blank">UIDAI</a>
+      <a href="https://myaadhaar.uidai.gov.in/" target="_blank">My Aadhaar</a>
+    </div>
+
+    <div class="service-card">
+      <h3>NPCI Services</h3>
+      <p>Aadhaar linking, DBT, payment systems.</p>
+      <a href="https://resident.uidai.gov.in/bank-mapper" target="_blank">Bank Mapper</a>
+      <a href="https://www.npci.org.in/what-we-do/aeps/product-overview" target="_blank">AEPS</a>
+      <a href="https://www.npci.org.in/what-we-do/upi/product-overview" target="_blank">UPI</a>
+      <a href="https://www.npci.org.in/what-we-do/bharat-billpay/product-overview" target="_blank">BBPS</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>© 2025 Dr Online Academy. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
