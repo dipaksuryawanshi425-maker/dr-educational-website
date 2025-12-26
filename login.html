@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="mr">
 <head>
 <meta charset="utf-8">
 <title>Student Login | Dr Online Academy</title>
@@ -13,19 +13,22 @@ body{
 }
 .box{
   max-width:400px;
-  margin:90px auto;
+  margin:100px auto;
   background:#fff;
   padding:25px;
   border-radius:12px;
   box-shadow:0 10px 25px rgba(0,0,0,0.12);
 }
-h2{text-align:center}
+h2{
+  text-align:center;
+}
 input{
   width:100%;
   padding:12px;
   margin-top:12px;
   border-radius:8px;
   border:1px solid #d1d5db;
+  font-size:15px;
 }
 button{
   width:100%;
@@ -37,11 +40,19 @@ button{
   color:#fff;
   font-size:16px;
   font-weight:700;
+  cursor:pointer;
 }
 .msg{
-  margin-top:12px;
+  margin-top:15px;
   text-align:center;
   color:red;
+  font-size:14px;
+}
+.note{
+  margin-top:15px;
+  font-size:13px;
+  color:#6b7280;
+  text-align:center;
 }
 </style>
 </head>
@@ -51,36 +62,34 @@ button{
 <div class="box">
   <h2>Student Login</h2>
 
-  <input id="name" placeholder="Full Name">
-  <input id="code" placeholder="Activation Code">
+  <input id="code" type="password" placeholder="Enter Activation Code">
 
   <button onclick="login()">Login</button>
+
   <div id="msg" class="msg"></div>
+
+  <div class="note">
+    🔐 Authorized students only
+  </div>
 </div>
 
 <script>
-const students = {
-  "SATYAM BHAGINATH YADAV":"SATYAM@2007",
-  "DIPAK KHANDU SURYAWANSHI":"DIPAK@2005",
-  "DNYANESHWARI PRALHAD JADHAV":"DNYANESHWARI@2007"
-};
+const VALID_CODE = "9226747818";
 
 function login(){
-  const name = document.getElementById("name").value.trim().toUpperCase();
   const code = document.getElementById("code").value.trim();
   const msg = document.getElementById("msg");
 
-  if(!name || !code){
-    msg.innerText = "❌ नाव आणि Activation Code भरा";
+  if(code === ""){
+    msg.innerText = "❌ Activation code टाका";
     return;
   }
 
-  if(students[name] === code){
+  if(code === VALID_CODE){
     localStorage.setItem("login","yes");
-    localStorage.setItem("student",name);
     window.location.href = "activate.html";
   }else{
-    msg.innerText = "❌ Login detail चुकीची आहे";
+    msg.innerText = "❌ Wrong Activation Code";
   }
 }
 </script>
