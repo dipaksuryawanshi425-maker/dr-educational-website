@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +26,10 @@
       border-radius:10px;
       box-shadow:0 0 12px rgba(0,0,0,0.12);
     }
-    h2{margin-top:0;text-align:center}
+    h2{
+      margin-top:0;
+      text-align:center;
+    }
     input,button{
       width:100%;
       padding:10px;
@@ -58,46 +60,46 @@
 </div>
 
 <script>
-  /* ========= EmailJS INIT ========= */
+  /* ===== EmailJS Init ===== */
   emailjs.init("i8go6mBB1bEylAo0a"); // Public Key
 
   let generatedOTP = null;
 
-  /* ========= SEND OTP ========= */
+  /* ===== Send OTP ===== */
   function sendOTP(){
     const email = document.getElementById("email").value.trim();
 
     if(!email){
-      alert("Please enter a valid email");
+      alert("Please enter email");
       return;
     }
 
     generatedOTP = Math.floor(100000 + Math.random() * 900000);
 
     emailjs.send(
-      "service_l8m2t2c",      // Service ID
-      "template_bzn83lx",     // Template ID
+      "service_l8m2t2c",    // Service ID
+      "template_bzn83lx",   // Template ID
       {
-        email: email,         // {{email}}
-        otp: generatedOTP     // {{otp}}
+        email: email,       // {{email}}
+        otp: generatedOTP   // {{otp}}
       }
     ).then(() => {
       alert("OTP sent to your email ✅");
-    }, (error) => {
+    }).catch(error => {
       alert("Failed to send OTP ❌");
-      console.log(error);
+      console.log("EmailJS Error:", error);
     });
   }
 
-  /* ========= VERIFY OTP ========= */
+  /* ===== Verify OTP ===== */
   function verifyOTP(){
     const otp = document.getElementById("otp").value.trim();
 
     if(otp == generatedOTP){
-      // 🔐 LOGIN FLAG SET
+      // 🔐 Login flag
       sessionStorage.setItem("loggedIn", "true");
 
-      // ✅ REDIRECT TO INDEX
+      // Redirect to index
       window.location.href = "index.html";
     }else{
       alert("Wrong OTP ❌");
