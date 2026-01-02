@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dr Online Academy</title>
 
+<!-- 🔒 LOGIN PROTECTION (ADDED - बाकी काही बदल नाही) -->
+<script>
+  if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+
 <style>
 :root{
   --accent:#2563eb;
@@ -180,4 +187,4 @@ iframe{
 </footer>
 
 </body>
-</html>
+      </html>
