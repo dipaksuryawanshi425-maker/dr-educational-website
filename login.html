@@ -1,110 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Email OTP Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login | Dr Online Academy</title>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4f6f8;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      margin:0;
-    }
-    .box{
-      background:#fff;
-      padding:20px;
-      width:100%;
-      max-width:360px;
-      border-radius:10px;
-      box-shadow:0 0 12px rgba(0,0,0,0.12);
-    }
-    h2{
-      margin-top:0;
-      text-align:center;
-    }
-    input,button{
-      width:100%;
-      padding:10px;
-      margin-top:10px;
-      font-size:16px;
-    }
-    button{
-      background:#2563eb;
-      color:#fff;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-      font-weight:700;
-    }
-  </style>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f3f4f6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  margin:0;
+}
+.card{
+  background:#fff;
+  padding:25px;
+  width:100%;
+  max-width:360px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+h2{text-align:center;margin-bottom:20px}
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+button:hover{opacity:.9}
+.toggle{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+  color:#2563eb;
+  cursor:pointer;
+}
+.error{color:red;text-align:center;margin-top:10px}
+.success{color:green;text-align:center;margin-top:10px}
+</style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Email OTP Login</h2>
+<div class="card">
+  <h2 id="title">Login</h2>
 
-  <input type="email" id="email" placeholder="Enter your email">
-  <button onclick="sendOTP()">Send OTP</button>
+  <input type="email" id="email" placeholder="Enter Email">
+  <input type="password" id="password" placeholder="Enter Password">
 
-  <input type="text" id="otp" placeholder="Enter OTP">
-  <button onclick="verifyOTP()">Verify & Login</button>
+  <button onclick="submitForm()">Login</button>
+
+  <div class="toggle" onclick="toggleMode()" id="toggleText">
+    Create new account
+  </div>
+
+  <div id="msg"></div>
 </div>
 
 <script>
-  /* ===== EmailJS Init ===== */
-  emailjs.init("i8go6mBB1bEylAo0a"); // Public Key
+let isLogin = true;
 
-  let generatedOTP = null;
+function toggleMode(){
+  isLogin = !isLogin;
+  document.getElementById("title").innerText =
+    isLogin ? "Login" : "Create Account";
+  document.querySelector("button").innerText =
+    isLogin ? "Login" : "Create Account";
+  document.getElementById("toggleText").innerText =
+    isLogin ? "Create new account" : "Already have account? Login";
+  document.getElementById("msg").innerHTML = "";
+}
 
-  /* ===== Send OTP ===== */
-  function sendOTP(){
-    const email = document.getElementById("email").value.trim();
+function submitForm(){
+  const email = document.getElementById("email").value.trim();
+  const pass = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
 
-    if(!email){
-      alert("Please enter email");
-      return;
-    }
-
-    generatedOTP = Math.floor(100000 + Math.random() * 900000);
-
-    emailjs.send(
-      "service_l8m2t2c",    // Service ID
-      "template_bzn83lx",   // Template ID
-      {
-        email: email,       // {{email}}
-        otp: generatedOTP   // {{otp}}
-      }
-    ).then(() => {
-      alert("OTP sent to your email ✅");
-    }).catch(error => {
-      alert("Failed to send OTP ❌");
-      console.log("EmailJS Error:", error);
-    });
+  if(!email || !pass){
+    msg.innerHTML = "<div class='error'>All fields required</div>";
+    return;
   }
 
-  /* ===== Verify OTP ===== */
-  function verifyOTP(){
-    const otp = document.getElementById("otp").value.trim();
+  let users = JSON.parse(localStorage.getItem("users")) || {};
 
-    if(otp == generatedOTP){
-      // 🔐 Login flag
-      sessionStorage.setItem("loggedIn", "true");
-
-      // Redirect to index
-      window.location.href = "index.html";
+  if(isLogin){
+    if(users[email] && users[email] === pass){
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("userEmail", email);
+      window.location.href = "index.html";   // ✅ REDIRECT
     }else{
-      alert("Wrong OTP ❌");
+      msg.innerHTML = "<div class='error'>Invalid email or password</div>";
+    }
+  }else{
+    if(users[email]){
+      msg.innerHTML = "<div class='error'>Account already exists</div>";
+    }else{
+      users[email] = pass;
+      localStorage.setItem("users", JSON.stringify(users));
+      msg.innerHTML = "<div class='success'>Account created. Login now</div>";
+      toggleMode();
     }
   }
+}
 </script>
 
 </body>
