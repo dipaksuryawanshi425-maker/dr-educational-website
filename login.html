@@ -19,7 +19,7 @@ body{
   background:#fff;
   padding:25px;
   width:100%;
-  max-width:360px;
+  max-width:380px;
   border-radius:12px;
   box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
@@ -53,6 +53,14 @@ button{
 .msg{text-align:center;margin-top:10px}
 .error{color:red}
 .success{color:green}
+.rules{
+  font-size:12px;
+  color:#374151;
+  background:#f9fafb;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:12px;
+}
 </style>
 </head>
 
@@ -61,8 +69,17 @@ button{
 <div class="card">
   <h2 id="title">Login</h2>
 
-  <input type="email" id="email" placeholder="Email">
+  <input type="email" id="email" placeholder="Email (example@gmail.com)">
   <input type="password" id="password" placeholder="Password">
+
+  <div class="rules" id="rules" style="display:none">
+    Password must contain:<br>
+    • Minimum 8 characters<br>
+    • 1 Capital letter<br>
+    • 1 Small letter<br>
+    • 1 Number<br>
+    • 1 Special character (@#$!)
+  </div>
 
   <button onclick="submitForm()">Login</button>
 
@@ -76,14 +93,34 @@ button{
 <script>
 let isLogin = true;
 
+// Email validation
+function validEmail(email){
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
+// Password validation
+function validPassword(password){
+  const passPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+  return passPattern.test(password);
+}
+
 function toggleMode(){
   isLogin = !isLogin;
+
   document.getElementById("title").innerText =
     isLogin ? "Login" : "Create Account";
+
   document.querySelector("button").innerText =
     isLogin ? "Login" : "Create Account";
+
   document.getElementById("toggleText").innerText =
     isLogin ? "Create new account" : "Already have account? Login";
+
+  document.getElementById("rules").style.display =
+    isLogin ? "none" : "block";
+
   document.getElementById("msg").innerHTML = "";
 }
 
@@ -97,25 +134,37 @@ function submitForm(){
     return;
   }
 
+  if(!validEmail(email)){
+    msg.innerHTML = "<div class='error'>Invalid email format</div>";
+    return;
+  }
+
   let users = JSON.parse(localStorage.getItem("users")) || {};
 
   if(isLogin){
-    // 🔐 LOGIN
+    // LOGIN
     if(users[email] && users[email] === pass){
-      localStorage.setItem("loggedIn", "true");   // ✅ SAME STORAGE
+      localStorage.setItem("loggedIn", "true");
       localStorage.setItem("userEmail", email);
-      window.location.href = "index.html";        // ✅ REDIRECT
+      window.location.href = "index.html";
     }else{
-      msg.innerHTML = "<div class='error'>Invalid email or password</div>";
+      msg.innerHTML = "<div class='error'>Email or password incorrect</div>";
     }
   }else{
-    // 📝 CREATE ACCOUNT
+    // CREATE ACCOUNT
+    if(!validPassword(pass)){
+      msg.innerHTML =
+        "<div class='error'>Password does not meet security rules</div>";
+      return;
+    }
+
     if(users[email]){
       msg.innerHTML = "<div class='error'>Account already exists</div>";
     }else{
       users[email] = pass;
       localStorage.setItem("users", JSON.stringify(users));
-      msg.innerHTML = "<div class='success'>Account created. Login now</div>";
+      msg.innerHTML =
+        "<div class='success'>Account created successfully. Login now</div>";
       toggleMode();
     }
   }
